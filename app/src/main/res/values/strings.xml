@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">ProgrammingLanguage</string>
+
+    <string-array name="category">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Beverage</item>
+        <item>Snack</item>
+    </string-array>
+
+    <string-array name="breakfast">
+        <item>Veggie Breakfast\nTacos</item>
+        <item>Banana Muffins</item>
+        <item>Gluten Free\nBanana Bread</item>
+        <item>Avocado Toast</item>
+    </string-array>
+
+    <string-array name="lunch">
+        <item>Ratatouille</item>
+        <item>Nicoisse</item>
+        <item>Macaroni Salad</item>
+        <item>Veggie Burger</item>
+    </string-array>
+
+    <string-array name="dinner">
+        <item>Veggie Sushi Bowl</item>
+        <item>Zucchini Noodles\nwith Pesto</item>
+        <item>Caprese Pasta</item>
+        <item>Thai Pineapple\nFried Rice</item>
+    </string-array>
+
+    <string-array name="beverage">
+        <item>Pineapple Mango\nSmoothie</item>
+        <item>Immune Booster\nSmoothie</item>
+        <item>Lemon Ginger Soda</item>
+        <item>Carrot Limeade</item>
+    </string-array>
+
+    <string-array name="snack">
+        <item>Pistachio Oat Bars</item>
+        <item>Peanut Butter\nChocolate Chip Bars</item>
+        <item>Guacamole</item>
+        <item>Blueberry Scone</item>
+    </string-array>
+
+</resources>
