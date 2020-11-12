@@ -116,7 +116,6 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 				food4_text.setText(food[3]);
 				break;
 		}
-
 	}
 
 	@Override

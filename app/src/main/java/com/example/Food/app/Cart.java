@@ -52,22 +52,18 @@ public class Cart extends AppCompatActivity{
 					case 0:
 						image = R.drawable.breakfast_b1;
 						food = foodArray[0];
-						db.addFood(new Food(food,image));
 						break;
 					case 1:
 						food = foodArray[1];
 						image = R.drawable.breakfast_b2;
-						db.addFood(new Food(food,image));
 						break;
 					case 2:
 						food = foodArray[2];
 						image = R.drawable.breakfast_b3;
-						db.addFood(new Food(food,image));
 						break;
 					case 3:
 						food = foodArray[3];
 						image = R.drawable.breakfast_b4;
-						db.addFood(new Food(food,image));
 						break;
 				};
 				break;
@@ -77,22 +73,18 @@ public class Cart extends AppCompatActivity{
 					case 0:
 						food = foodArray[0];
 						image = R.drawable.lunch_l1;
-						db.addFood(new Food(food,image));
 						break;
 					case 1:
 						food = foodArray[1];
 						image = R.drawable.lunch_l2;
-						db.addFood(new Food(food,image));
 						break;
 					case 2:
 						food = foodArray[2];
 						image = R.drawable.lunch_l3;
-						db.addFood(new Food(food,image));
 						break;
 					case 3:
 						food = foodArray[3];
 						image = R.drawable.lunch_l4;
-						db.addFood(new Food(food,image));
 						break;
 				};
 				break;
@@ -102,22 +94,18 @@ public class Cart extends AppCompatActivity{
 					case 0:
 						food = foodArray[0];
 						image = R.drawable.dinner_d1;
-						db.addFood(new Food(food,image));
 						break;
 					case 1:
 						food = foodArray[1];
 						image = R.drawable.dinner_d2;
-						db.addFood(new Food(food,image));
 						break;
 					case 2:
 						food = foodArray[2];
 						image = R.drawable.dinner_d3;
-						db.addFood(new Food(food,image));
 						break;
 					case 3:
 						food = foodArray[3];
 						image = R.drawable.dinner_d4;
-						db.addFood(new Food(food,image));
 						break;
 				};
 				break;
@@ -127,22 +115,18 @@ public class Cart extends AppCompatActivity{
 					case 0:
 						food = foodArray[0];
 						image = R.drawable.beverage_b1;
-						db.addFood(new Food(food,image));
 						break;
 					case 1:
 						food = foodArray[1];
 						image = R.drawable.beverage_b2;
-						db.addFood(new Food(food,image));
 						break;
 					case 2:
 						food = foodArray[2];
 						image = R.drawable.beverage_b3;
-						db.addFood(new Food(food,image));
 						break;
 					case 3:
 						food = foodArray[3];
 						image = R.drawable.beverage_b4;
-						db.addFood(new Food(food,image));
 						break;
 				};
 				break;
@@ -152,26 +136,24 @@ public class Cart extends AppCompatActivity{
 					case 0:
 						food = foodArray[0];
 						image = R.drawable.snack_s1;
-						db.addFood(new Food(food,image));
 						break;
 					case 1:
 						food = foodArray[1];
 						image = R.drawable.snack_s2;
-						db.addFood(new Food(food,image));
 						break;
 					case 2:
 						food = foodArray[2];
 						image = R.drawable.snack_s3;
-						db.addFood(new Food(food,image));
 						break;
 					case 3:
 						food = foodArray[3];
 						image = R.drawable.snack_s4;
-						db.addFood(new Food(food,image));
+
 						break;
 				};
 				break;
 		}
+		db.addFood(new Food(food,image));
 		List<Food> foodList = db.getAllFood();
 		for(Food food: foodList){
 			foodArrayList.add(food);
