@@ -26,8 +26,8 @@ public class Cart extends AppCompatActivity{
 
 	String foodArray[];
 	ArrayList<Food> foodArrayList =  new ArrayList<>();
-	String food;
 
+	String food;
 	int image;
 
 	@Override
@@ -42,8 +42,8 @@ public class Cart extends AppCompatActivity{
 
 		foodArrayList = new ArrayList<>();
 
-		int position = getIntent().getIntExtra("food_position",0);
-		int category = getIntent().getIntExtra("category",0);
+		int position = getIntent().getIntExtra("food_position",5);
+		int category = getIntent().getIntExtra("category",5);
 
 		switch(category){
 			case 0:
@@ -65,7 +65,7 @@ public class Cart extends AppCompatActivity{
 						food = foodArray[3];
 						image = R.drawable.breakfast_b4;
 						break;
-				};
+				}
 				break;
 			case 1:
 				foodArray = getResources().getStringArray(R.array.lunch);
@@ -86,7 +86,7 @@ public class Cart extends AppCompatActivity{
 						food = foodArray[3];
 						image = R.drawable.lunch_l4;
 						break;
-				};
+				}
 				break;
 			case 2:
 				foodArray = getResources().getStringArray(R.array.dinner);
@@ -107,7 +107,7 @@ public class Cart extends AppCompatActivity{
 						food = foodArray[3];
 						image = R.drawable.dinner_d4;
 						break;
-				};
+				}
 				break;
 			case 3:
 				foodArray = getResources().getStringArray(R.array.beverage);
@@ -128,7 +128,7 @@ public class Cart extends AppCompatActivity{
 						food = foodArray[3];
 						image = R.drawable.beverage_b4;
 						break;
-				};
+				}
 				break;
 			case 4:
 				foodArray = getResources().getStringArray(R.array.snack);
@@ -148,9 +148,12 @@ public class Cart extends AppCompatActivity{
 					case 3:
 						food = foodArray[3];
 						image = R.drawable.snack_s4;
-
 						break;
-				};
+				}
+				break;
+			case 5:
+				image = 5;
+				food = "";
 				break;
 		}
 		db.addFood(new Food(food,image));

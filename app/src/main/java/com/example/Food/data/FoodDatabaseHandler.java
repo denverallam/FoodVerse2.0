@@ -70,7 +70,6 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 	}
 	public void deleteFood(int id){
 		SQLiteDatabase db = this.getReadableDatabase();
-
 		db.delete(FoodUtil.TABLE_NAME, FoodUtil.KEY_ID + "=?",
 				new String[]{String.valueOf(id)});
 		db.close();

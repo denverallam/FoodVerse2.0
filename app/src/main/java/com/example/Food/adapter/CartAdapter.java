@@ -57,10 +57,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 			delete.setOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View v){
+					int position = getAdapterPosition();
+					Food food = foodList.get(position);
 					FoodDatabaseHandler db = new FoodDatabaseHandler(context);
-					db.deleteFood(getLayoutPosition());
+					db.deleteFood(food.getId());
 					foodList.remove(getAdapterPosition());
-					notifyItemChanged(getAdapterPosition());
+					notifyDataSetChanged();
 				}
 			});
 		}

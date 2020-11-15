@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.Food.app.Cart;
 
@@ -17,7 +18,7 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 	Button food_cart1, food_cart2, food_cart3, food_cart4,cart;
 	TextView food1_text, food2_text, food3_text, food4_text;
 	String food[];
-	int food_pos;
+	int food_pos = 10;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -121,8 +122,7 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 	@Override
 	public void onClick(View v){
 		Intent intent = new Intent(Grid.this, Cart.class);
-		int position = getIntent().getIntExtra("POSITION",0);
-		intent.putExtra("category",position);
+		int position = getIntent().getIntExtra("POSITION",10);
 		switch(v.getId()){
 			case R.id.food_cart1:
 				food_pos = 0;
@@ -137,8 +137,14 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 				food_pos = 3;
 				break;
 			case R.id.cart:
-				intent.putExtra("food_position",food_pos);
-				startActivity(intent);
+				if(position != 10 && food_pos != 10){
+					intent.putExtra("category",position);
+					intent.putExtra("food_position",food_pos);
+					startActivity(intent);
+				}
+				else{
+					Toast.makeText(this,"Cart is empty!",Toast.LENGTH_SHORT).show();
+				}
 				break;
 		}
 

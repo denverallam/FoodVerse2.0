@@ -50,7 +50,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 		@Override
 		public void onClick(View v){
 			int position = getAdapterPosition();
-
 			Intent intent = new Intent(context, Grid.class);
 			intent.putExtra("POSITION",position);
 			context.startActivity(intent);
