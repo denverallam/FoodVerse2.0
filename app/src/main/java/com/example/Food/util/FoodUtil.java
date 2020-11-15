@@ -3,7 +3,7 @@ package com.example.Food.util;
 public class FoodUtil{
 
 	//Database related items
-	public static final int DATABASE_VERSION = 5;
+	public static final int DATABASE_VERSION = 6;
 	public static final String DATABASE_NAME = "Food_Database";
 	public static final String TABLE_NAME = "Cart";
 

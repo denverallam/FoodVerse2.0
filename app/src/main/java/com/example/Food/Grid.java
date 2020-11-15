@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,12 +12,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Food.app.Cart;
+import com.example.Food.data.FoodDatabaseHandler;
+import com.example.Food.model.Food;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Grid extends AppCompatActivity implements View.OnClickListener{
 
 	ImageView header, food1_image, food2_image, food3_image, food4_image;
 	Button food_cart1, food_cart2, food_cart3, food_cart4,cart;
 	TextView food1_text, food2_text, food3_text, food4_text;
+	FoodDatabaseHandler db = new FoodDatabaseHandler(this);
+	ArrayList<Food> foodArrayList = new ArrayList<>();
 	String food[];
 	int food_pos = 10;
 	@Override
@@ -25,6 +33,8 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		setContentView(R.layout.activity_grid);
 
 		int position = getIntent().getIntExtra("POSITION",0);
+
+
 		header = findViewById(R.id.imageView);
 		food1_image = findViewById(R.id.food1_image);
 		food2_image = findViewById(R.id.food2_image);
@@ -46,8 +56,12 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		food_cart2.setOnClickListener(this);
 		food_cart3.setOnClickListener(this);
 		food_cart4.setOnClickListener(this);
-		cart.setOnClickListener(this);
 
+		List<Food> foodList = db.getAllFood();
+		for(Food food: foodList){
+			foodArrayList.add(food);
+		}
+		cart.setOnClickListener(this);
 
 		switch(position){
 			case 0:
@@ -122,29 +136,27 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 	@Override
 	public void onClick(View v){
 		Intent intent = new Intent(Grid.this, Cart.class);
-		int position = getIntent().getIntExtra("POSITION",10);
+		int position = getIntent().getIntExtra("POSITION",0);
 		switch(v.getId()){
 			case R.id.food_cart1:
 				food_pos = 0;
+				db.addFood(new Food(food[food_pos],food_pos));
 				break;
 			case R.id.food_cart2:
 				food_pos = 1;
+				db.addFood(new Food(food[food_pos],food_pos));
 				break;
 			case R.id.food_cart3:
 				food_pos = 2;
+				db.addFood(new Food(food[food_pos],food_pos));
 				break;
 			case R.id.food_cart4:
 				food_pos = 3;
+				db.addFood(new Food(food[food_pos],food_pos));
 				break;
 			case R.id.cart:
-				if(position != 10 && food_pos != 10){
-					intent.putExtra("category",position);
-					intent.putExtra("food_position",food_pos);
-					startActivity(intent);
-				}
-				else{
-					Toast.makeText(this,"Cart is empty!",Toast.LENGTH_SHORT).show();
-				}
+				Log.d("Size", String.valueOf(foodArrayList.size()));
+				startActivity(intent);
 				break;
 		}
 

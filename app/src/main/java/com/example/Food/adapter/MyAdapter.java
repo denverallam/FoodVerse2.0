@@ -27,6 +27,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 		View view = inflater.inflate(R.layout.row,parent,false);
 		return new MyViewHolder(view);
 	}
+
 	@Override
 	public void onBindViewHolder(@NonNull final MyViewHolder holder, int position){
 		holder.imageView.setImageResource(images[position]);

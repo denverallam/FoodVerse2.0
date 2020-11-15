@@ -19,11 +19,15 @@ import java.util.List;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder>{
 
 	List<Food> foodList;
+	int images[];
 	Context context;
-	public CartAdapter(Context ctx, List<Food> food){
+
+	public CartAdapter(Context ctx, List<Food> food, int [] images){
 		context = ctx;
+		this.images = images;
 		foodList = food;
 	}
+
 	@NonNull
 	@Override
 	public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
@@ -35,8 +39,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 	@Override
 	public void onBindViewHolder(@NonNull CartViewHolder holder, int position){
 		Food food = foodList.get(position);
-		holder.foodImage.setImageResource(food.getFoodNumber());
 		holder.foodText.setText(food.getFoodName());
+		holder.foodImage.setImageResource(images[food.getFoodNumber()]);
 	}
 
 	@Override
