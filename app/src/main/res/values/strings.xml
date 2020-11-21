@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProgrammingLanguage</string>
+    <string name="app_name">FoodVerse</string>
 
     <string-array name="category">
         <item>Breakfast</item>

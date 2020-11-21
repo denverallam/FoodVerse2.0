@@ -26,13 +26,15 @@ public class Cart extends AppCompatActivity{
 	TextView textView;
 
 	ArrayList<Food> foodArrayList =  new ArrayList<>();
-
 	int images[];
-
+	String email;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cart);
+
+		Login login = new Login();
+		email = login.userEmail;
 
 		recyclerView = findViewById(R.id.cart_recycler);
 		imageView = findViewById(R.id.food_image);
@@ -40,113 +42,7 @@ public class Cart extends AppCompatActivity{
 		FoodDatabaseHandler db = new FoodDatabaseHandler(this);
 		int position = getIntent().getIntExtra("POSITION",0);
 
-//		switch(category){
-//			case 0:
-//				foodArray = getResources().getStringArray(R.array.breakfast);
-//				switch(position){
-//					case 0:
-//						image = R.drawable.breakfast_b1;
-//						food = foodArray[0];
-//						break;
-//					case 1:
-//						food = foodArray[1];
-//						image = R.drawable.breakfast_b2;
-//						break;
-//					case 2:
-//						food = foodArray[2];
-//						image = R.drawable.breakfast_b3;
-//						break;
-//					case 3:
-//						food = foodArray[3];
-//						image = R.drawable.breakfast_b4;
-//						break;
-//				}
-//				break;
-//			case 1:
-//				foodArray = getResources().getStringArray(R.array.lunch);
-//				switch(position){
-//					case 0:
-//						food = foodArray[0];
-//						image = R.drawable.lunch_l1;
-//						break;
-//					case 1:
-//						food = foodArray[1];
-//						image = R.drawable.lunch_l2;
-//						break;
-//					case 2:
-//						food = foodArray[2];
-//						image = R.drawable.lunch_l3;
-//						break;
-//					case 3:
-//						food = foodArray[3];
-//						image = R.drawable.lunch_l4;
-//						break;
-//				}
-//				break;
-//			case 2:
-//				foodArray = getResources().getStringArray(R.array.dinner);
-//				switch(position){
-//					case 0:
-//						food = foodArray[0];
-//						image = R.drawable.dinner_d1;
-//						break;
-//					case 1:
-//						food = foodArray[1];
-//						image = R.drawable.dinner_d2;
-//						break;
-//					case 2:
-//						food = foodArray[2];
-//						image = R.drawable.dinner_d3;
-//						break;
-//					case 3:
-//						food = foodArray[3];
-//						image = R.drawable.dinner_d4;
-//						break;
-//				}
-//				break;
-//			case 3:
-//				foodArray = getResources().getStringArray(R.array.beverage);
-//				switch(position){
-//					case 0:
-//						food = foodArray[0];
-//						image = R.drawable.beverage_b1;
-//						break;
-//					case 1:
-//						food = foodArray[1];
-//						image = R.drawable.beverage_b2;
-//						break;
-//					case 2:
-//						food = foodArray[2];
-//						image = R.drawable.beverage_b3;
-//						break;
-//					case 3:
-//						food = foodArray[3];
-//						image = R.drawable.beverage_b4;
-//						break;
-//				}
-//				break;
-//			case 4:
-//				foodArray = getResources().getStringArray(R.array.snack);
-//				switch(position){
-//					case 0:
-//						food = foodArray[0];
-//						image = R.drawable.snack_s1;
-//						break;
-//					case 1:
-//						food = foodArray[1];
-//						image = R.drawable.snack_s2;
-//						break;
-//					case 2:
-//						food = foodArray[2];
-//						image = R.drawable.snack_s3;
-//						break;
-//					case 3:
-//						food = foodArray[3];
-//						image = R.drawable.snack_s4;
-//						break;
-//				}
-//				break;
-//		}
+
 		switch(position){
 			case 0:
 				int breakfast[] = {
@@ -179,7 +75,7 @@ public class Cart extends AppCompatActivity{
 				images = snack;
 				break;
 		}
-		List<Food> foodList = db.getAllFood();
+		List<Food> foodList = db.getAllFood(email);
 		for(Food food: foodList){
 			foodArrayList.add(food);
 		}

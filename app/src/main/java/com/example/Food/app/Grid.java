@@ -1,4 +1,4 @@
-package com.example.Food;
+package com.example.Food.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,9 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.Food.app.Cart;
+import com.example.Food.R;
 import com.example.Food.data.FoodDatabaseHandler;
 import com.example.Food.model.Food;
 
@@ -26,6 +25,7 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 	FoodDatabaseHandler db = new FoodDatabaseHandler(this);
 	ArrayList<Food> foodArrayList = new ArrayList<>();
 	String food[];
+	String email;
 	int food_pos = 10;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -33,7 +33,8 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		setContentView(R.layout.activity_grid);
 
 		int position = getIntent().getIntExtra("POSITION",0);
-
+		Login login = new Login();
+		email = login.userEmail;
 
 		header = findViewById(R.id.imageView);
 		food1_image = findViewById(R.id.food1_image);
@@ -57,7 +58,7 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		food_cart3.setOnClickListener(this);
 		food_cart4.setOnClickListener(this);
 
-		List<Food> foodList = db.getAllFood();
+		List<Food> foodList = db.getAllFood(email);
 		for(Food food: foodList){
 			foodArrayList.add(food);
 		}
@@ -140,19 +141,19 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		switch(v.getId()){
 			case R.id.food_cart1:
 				food_pos = 0;
-				db.addFood(new Food(food[food_pos],food_pos));
+				db.addFood(new Food(email, food[food_pos],food_pos));
 				break;
 			case R.id.food_cart2:
 				food_pos = 1;
-				db.addFood(new Food(food[food_pos],food_pos));
+				db.addFood(new Food(email, food[food_pos],food_pos));
 				break;
 			case R.id.food_cart3:
 				food_pos = 2;
-				db.addFood(new Food(food[food_pos],food_pos));
+				db.addFood(new Food(email, food[food_pos],food_pos));
 				break;
 			case R.id.food_cart4:
 				food_pos = 3;
-				db.addFood(new Food(food[food_pos],food_pos));
+				db.addFood(new Food(email, food[food_pos],food_pos));
 				break;
 			case R.id.cart:
 				Log.d("Size", String.valueOf(foodArrayList.size()));

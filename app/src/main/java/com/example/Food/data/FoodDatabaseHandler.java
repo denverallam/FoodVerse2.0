@@ -24,7 +24,7 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db){
 		String CREATE_FOOD_TABLE = "CREATE TABLE " + FoodUtil.TABLE_NAME + "(" + FoodUtil.KEY_ID + " INTEGER PRIMARY KEY, "
-				+ FoodUtil.FOOD_NAME + " TEXT, " + FoodUtil.FOOD_NUMBER + " INTEGER" + ")";
+				+ FoodUtil.FOOD_EMAIL + " TEXT, " + FoodUtil.FOOD_NAME + " TEXT, " + FoodUtil.FOOD_NUMBER + " INTEGER" + ")";
 
 		db.execSQL(CREATE_FOOD_TABLE);
 	}
@@ -40,6 +40,7 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getWritableDatabase();
 		Log.d("Database", "onCreate: Added");
 		ContentValues values = new ContentValues();
+		values.put(FoodUtil.FOOD_EMAIL, food.getFoodEmail());
 		values.put(FoodUtil.FOOD_NAME, food.getFoodName());
 		values.put(FoodUtil.FOOD_NUMBER, food.getFoodNumber());
 
@@ -47,20 +48,21 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 		db.insert(FoodUtil.TABLE_NAME, null, values);
 		db.close(); //close db connection
 	}
-	public List<Food> getAllFood(){
+	public List<Food> getAllFood(String email){
 		List<Food> foodList = new ArrayList<>();
 		SQLiteDatabase db = this.getReadableDatabase();
 		//Select all contacts
-		String selectAll = "SELECT * FROM " + FoodUtil.TABLE_NAME;
-		Cursor cursor = db.rawQuery(selectAll, null);
+		String selectAll = "SELECT * FROM " + FoodUtil.TABLE_NAME + " WHERE " + FoodUtil.FOOD_EMAIL + "=?";
+		Cursor cursor = db.rawQuery(selectAll, 		new String[]{email});
 
 		//Loop through the data
 		if(cursor.moveToFirst()){
 			do{
 				Food food = new Food();
 				food.setId(Integer.parseInt(cursor.getString(0)));
-				food.setFoodName(cursor.getString(1));
-				food.setFoodNumber(cursor.getInt(2));
+				food.setFoodEmail(cursor.getString(1));
+				food.setFoodName(cursor.getString(2));
+				food.setFoodNumber(cursor.getInt(3));
 
 				//add contact objects to the list
 				foodList.add(food);

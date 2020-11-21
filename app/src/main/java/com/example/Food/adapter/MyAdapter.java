@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.Food.Grid;
+import com.example.Food.app.Grid;
 import com.example.Food.R;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{

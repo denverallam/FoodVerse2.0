@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Grid">
+    tools:context=".app.Grid">
 
     <ImageView
         android:id="@+id/imageView"
