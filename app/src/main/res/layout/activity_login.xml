@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.Food.app.Login">
+
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginBottom="600dp"
+        android:src="@mipmap/food1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/login_email"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="300dp"
+        android:hint="Email"
+        android:inputType="text"
+        android:textColor="#000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="20dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="#000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_email" />
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/bg_btn"
+        android:shadowColor="#568a9f"
+        android:text="LOGIN"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_password" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_login">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="Don't have an account?"
+            android:textColor="#000"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/text_signup"
+            tools:layout_editor_absoluteY="447dp" />
+
+        <TextView
+            android:id="@+id/text_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:text="Sign-up now"
+            android:textAllCaps="false"
+            android:textColor="#D40000"
+            android:textSize="15dp"
+            tools:layout_editor_absoluteX="237dp"
+            tools:layout_editor_absoluteY="447dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ImageView
+            android:id="@+id/line2"
+            android:layout_width="150dp"
+            android:layout_height="5dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/line_2"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="511dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="OR"
+            android:textColor="#000"
+            app:layout_constraintEnd_toStartOf="@+id/line1"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toEndOf="@+id/line2"
+            tools:layout_editor_absoluteY="503dp" />
+
+        <ImageView
+            android:id="@+id/line1"
+            android:layout_width="150dp"
+            android:layout_height="5dp"
+            android:layout_marginEnd="30dp"
+            android:src="@mipmap/line_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="511dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <ImageView
+            android:id="@+id/fb"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="20dp"
+            android:src="@mipmap/fb"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="566dp" />
+
+        <ImageView
+            android:id="@+id/gmail"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/gmail1"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/twitter"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toEndOf="@+id/fb"
+            tools:layout_editor_absoluteY="566dp" />
+
+        <ImageView
+            android:id="@+id/twitter"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="50dp"
+            android:src="@mipmap/twitter"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="566dp" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

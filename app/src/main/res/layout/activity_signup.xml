@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@mipmap/bg2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.Food.app.Signup">
+    <LinearLayout
+        android:id="@+id/layout0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/left_arrow"></ImageView>
+
+        <TextView
+            android:id="@+id/text_back_to_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back to Login"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Sign Up"
+        android:textColor="#000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout0" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="left"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_signup">
+
+        <TextView
+            android:id="@+id/text_firstname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="5dp"
+            android:text="First Name"
+            android:textColor="#000" />
+
+        <EditText
+            android:id="@+id/register_fname"
+            android:layout_width="246dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_fname"
+            android:hint="Juan"
+            android:paddingLeft="15dp"
+            android:shadowColor="#3E3E3E" />
+
+        <TextView
+            android:id="@+id/text_lastname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Last Name"
+            android:textColor="#000" />
+
+        <EditText
+            android:id="@+id/register_lname"
+            android:layout_width="246dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_fname"
+            android:hint="Dela Cruz"
+            android:paddingLeft="15dp"
+            android:shadowColor="#3E3E3E" />
+
+        <TextView
+            android:id="@+id/text_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Email"
+            android:textColor="#000" />
+
+        <EditText
+            android:id="@+id/register_email"
+            android:layout_width="246dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:background="@drawable/custom_fname"
+            android:hint="juan123@gmail_com"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="15dp"
+            android:shadowColor="#3E3E3E" />
+
+        <TextView
+            android:id="@+id/text_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Password"
+            android:textColor="#000" />
+
+        <EditText
+            android:id="@+id/register_password"
+            android:layout_width="246dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_fname"
+            android:inputType="textWebPassword"
+            android:paddingLeft="15dp" />
+
+        <TextView
+            android:id="@+id/text_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Confirm Password"
+            android:textColor="#000" />
+
+        <EditText
+            android:id="@+id/register_confirm"
+            android:layout_width="246dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_fname"
+            android:inputType="textWebPassword"
+            android:paddingLeft="15dp"
+            android:shadowColor="#3E3E3E" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/button_createAccount"
+        android:layout_width="165dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_btn"
+        android:text="Create account"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+</androidx.constraintlayout.widget.ConstraintLayout>
