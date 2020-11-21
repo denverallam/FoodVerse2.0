@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -37,7 +38,7 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 	}
 	public void addFood(Food food){
 		SQLiteDatabase db = this.getWritableDatabase();
-
+		Log.d("Database", "onCreate: Added");
 		ContentValues values = new ContentValues();
 		values.put(FoodUtil.FOOD_NAME, food.getFoodName());
 		values.put(FoodUtil.FOOD_NUMBER, food.getFoodNumber());
