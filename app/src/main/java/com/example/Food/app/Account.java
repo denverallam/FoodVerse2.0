@@ -26,7 +26,7 @@ public class Account extends AppCompatActivity{
 	ImageView imageView;
 	TextView textView;
 	private Button edit,save;
-	private EditText name, email;
+	private EditText firstName, lastName, email;
 	String userEmail;
 	Login log = new Login();
 
@@ -56,23 +56,28 @@ public class Account extends AppCompatActivity{
 		textView = findViewById(R.id.like_text);
 		FoodDatabaseHandler db = new FoodDatabaseHandler(this);
 		DatabaseHandler data = new DatabaseHandler(this);
+
 		int position = getIntent().getIntExtra("POSITION",0);
+
 		save = findViewById(R.id.save_button);
 		edit = findViewById(R.id.edit_image);
-		name = findViewById(R.id.name_text);
+		firstName = findViewById(R.id.firstName_text);
+		firstName = findViewById(R.id.lastName_text);
 
 		email = findViewById(R.id.email_text);
 		save.setVisibility(View.INVISIBLE);
+
 		User user = data.getUser(log.userEmail);
-		name.setText(user.getFirstName());
+		firstName.setText(user.getFirstName());
+		lastName.setText(user.getLastName());
 		email.setText(user.getEmail());
 
 		edit.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v){
-				name.setFocusableInTouchMode(true);
+				firstName.setFocusableInTouchMode(true);
+				lastName.setFocusableInTouchMode(true);
 				email.setFocusableInTouchMode(true);
-
 				save.setVisibility(View.VISIBLE);
 			}
 		});
@@ -80,12 +85,13 @@ public class Account extends AppCompatActivity{
 		save.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v){
-				name.setText(name.getText());
+				firstName.setText(firstName.getText());
+				lastName.setText(firstName.getText());
 				email.setText(email.getText());
 
-				name.setFocusable(false);
+				firstName.setFocusable(false);
+				lastName.setFocusable(false);
 				email.setFocusable(false);
-
 				save.setVisibility(View.INVISIBLE);
 			}
 		});

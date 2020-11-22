@@ -22,7 +22,7 @@
         android:layout_centerVertical="true"
         android:id="@+id/grid"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/imageView"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
@@ -32,13 +32,11 @@
             android:id="@+id/card1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="8dp">
+            android:layout_margin="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -48,16 +46,20 @@
                     android:layout_height="180dp"
                     android:adjustViewBounds="true"
                     tools:srcCompat="@tools:sample/avatars" />
-
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:gravity="center_horizontal">
                 <TextView
                     android:id="@+id/food1_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:autoSizeTextType="uniform"
                     android:text="Food"
                     android:textColor="#000000"
                     android:textAlignment="center"
                     android:textStyle="bold" />
+            </LinearLayout>
 
                 <Button
                     android:id="@+id/food_cart1"
@@ -72,13 +74,11 @@
             android:layout_toEndOf="@id/card1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="8dp">
+            android:layout_margin="8dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -88,15 +88,20 @@
                     android:layout_height="180dp"
                     tools:srcCompat="@tools:sample/avatars" />
 
-                <TextView
-                    android:id="@+id/food2_text"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="130dp"
                     android:layout_height="30dp"
-                    android:autoSizeTextType="uniform"
-                    android:text="Food"
-                    android:textColor="#000000"
-                    android:textAlignment="center"
-                    android:textStyle="bold" />
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:id="@+id/food2_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autoSizeTextType="uniform"
+                        android:text="Food"
+                        android:textColor="#000000"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/food_cart2"
@@ -116,7 +121,6 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -126,16 +130,20 @@
                     android:layout_height="180dp"
                     tools:srcCompat="@tools:sample/avatars" />
 
-                <TextView
-                    android:id="@+id/food3_text"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="130dp"
                     android:layout_height="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:autoSizeTextType="uniform"
-                    android:text="Food"
-                    android:textColor="#000000"
-                    android:textAlignment="center"
-                    android:textStyle="bold" />
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:id="@+id/food3_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autoSizeTextType="uniform"
+                        android:text="Food"
+                        android:textColor="#000000"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+                </LinearLayout>
                 <Button
                     android:id="@+id/food_cart3"
                     android:layout_width="match_parent"
@@ -155,7 +163,6 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -165,16 +172,20 @@
                     android:layout_height="180dp"
                     tools:srcCompat="@tools:sample/avatars" />
 
-                <TextView
-                    android:id="@+id/food4_text"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="130dp"
                     android:layout_height="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:autoSizeTextType="uniform"
-                    android:text="Food"
-                    android:textColor="#000000"
-                    android:textAlignment="center"
-                    android:textStyle="bold" />
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:id="@+id/food4_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autoSizeTextType="uniform"
+                        android:text="Food"
+                        android:textColor="#000000"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/food_cart4"

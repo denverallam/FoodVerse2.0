@@ -10,9 +10,9 @@
     </string-array>
 
     <string-array name="breakfast">
-        <item>Veggie Breakfast\nTacos</item>
+        <item>Veggie Breakfast Tacos</item>
         <item>Banana Muffins</item>
-        <item>Gluten Free\nBanana Bread</item>
+        <item>Gluten Free Banana Bread</item>
         <item>Avocado Toast</item>
     </string-array>
 
@@ -25,21 +25,21 @@
 
     <string-array name="dinner">
         <item>Veggie Sushi Bowl</item>
-        <item>Zucchini Noodles\nwith Pesto</item>
+        <item>Zucchini Noodles with Pesto</item>
         <item>Caprese Pasta</item>
-        <item>Thai Pineapple\nFried Rice</item>
+        <item>Thai Pineapple Fried Rice</item>
     </string-array>
 
     <string-array name="beverage">
-        <item>Pineapple Mango\nSmoothie</item>
-        <item>Immune Booster\nSmoothie</item>
+        <item>Pineapple Mango Smoothie</item>
+        <item>Immune Booster Smoothie</item>
         <item>Lemon Ginger Soda</item>
         <item>Carrot Limeade</item>
     </string-array>
 
     <string-array name="snack">
         <item>Pistachio Oat Bars</item>
-        <item>Peanut Butter\nChocolate Chip Bars</item>
+        <item>Peanut Butter Chocolate Chip Bars</item>
         <item>Guacamole</item>
         <item>Blueberry Scone</item>
     </string-array>
@@ -171,11 +171,30 @@
         Sea salt and freshly ground black pepper
         </item>
 
-        <item>""</item>
-        <item>""</item>
-        <item>""</item>
-        <item>""</item>
-
+        <item>
+        3 tablespoons extra-virgin olive oil, more for drizzling\n \n
+        ½ yellow onion, coarsely chopped\n \n
+        1 pound eggplant, stemmed and cut into ½-inch pieces\n \n
+        1 teaspoon sea salt, divided
+        </item>
+        <item>
+        8 ounces small yellow or red potatoes\n \n
+        4 ounces fresh green beans, trimmed\n \n
+        ¾ cooked white beans, drained and rinsed\n \n
+        3 hard boiled eggs, halved
+        </item>
+        <item>
+        Heaping ½ cup mayo or vegan mayo\n \n
+        1 tablespoon Dijon mustard\n \n
+        2 tablespoons lemon juice\n \n
+        1 garlic clove, grated
+        </item>
+        <item>
+        2 tablespoons extra-virgin olive oil, more for drizzling\n \n
+        2 shallots, chopped (⅔ cup)\n \n
+        16 ounces mushrooms, mix of shiitake + portobello, de-stemmed and diced\n \n
+        2 tablespoons tamari
+        </item>
         <item>
         1 cup frozen mango chunks \n\n
         ¾ cup frozen pineapple chunks \n\n
@@ -296,10 +315,21 @@
         6. Preheat a grill to medium-high heat. Spray the grill with nonstick cooking spray and drizzle or brush the patties with olive oil. Grill for 4 to 5 minutes per side, or until char marks form. Remove from the grill, brush with Worcestershire sauce, and serve with desired fixings.
         </item>
 
-        <item>""</item>
-        <item>""</item>
-        <item>""</item>
-        <item>""</item>
+        <item>
+        1. To cook the rice: Bring a large pot of water to boil. Once the water is boiling, pour in the rinsed rice and give it a stir. Boil the rice for 30 minutes, then turn off the heat and drain the rice. Return the rice to the pot and cover the pot. Let the rice steam for 10 minutes. Remove the lid and fluff the rice with a fork.\n \n
+        2. To prepare the rice seasoning: In a small saucepan over medium heat, combine the rice vinegar, tamari, sugar and salt…SEE MORE.
+        </item>
+        <item>
+        1. To prepare the pesto: In a food processor, combine the onion (if using, see notes), garlic, basil, toasted pepitas, olive oil, vinegar and red pepper flakes. Blend until smooth and season with salt, to taste (I added about ½ teaspoon—if the mixture tastes overwhelmingly oniony, don’t worry, it will mellow in a few minutes.\n \n
+        2. To prepare the noodles: Spiralize the zucchini with a spiralizer (here’s how), or turn the zucchini into noodles with a julienne peeler, …SEE MORE.
+        </item>
+        <item>
+        1. Bring a large pot of salted water to boil and cook the pasta until al dente, according to package instructions. Drain the pasta and set it aside.\n \n
+        2. While the pasta is cooking, combine the olive oil, tomatoes and salt in a large, non-reactive skillet or Dutch oven over medium heat. Cover the skillet....SEE MORE.
+        </item>
+        <item>
+        1. Heat a large wok, cast iron skillet or non-stick frying pan over medium-high heat and place an empty serving bowl nearby. Once the pan is hot enough that a drop of water sizzles on contact, add 1 teaspoon oil. Pour in the eggs and cook, stirring frequently, until the eggs are scrambled and lightly set, about 30 seconds to 1 minute. Transfer the eggs to the empty bowl. Wipe out the pan if necessary with a paper towel …SEE MORE
+        </item>
 
         <item>
         1. In a large high-powered blender, add in all ingredients and blend on high for 1-2 minutes or until all ingredients are well combined. If necessary, add in more coconut milk to thin the smoothie. Makes 1 smoothie.

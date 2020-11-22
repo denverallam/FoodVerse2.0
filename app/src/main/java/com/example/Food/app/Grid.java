@@ -15,6 +15,7 @@ import android.widget.VideoView;
 import com.example.Food.R;
 import com.example.Food.data.FoodDatabaseHandler;
 import com.example.Food.model.Food;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -167,41 +168,41 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 			case R.id.food_cart1:
 				position = food_pos;
 				if(db.checkFood(email,food[0])){
-					Toast.makeText(getApplicationContext(),"Food already in cart!", Toast.LENGTH_SHORT).show();
+					Snackbar.make(v,food[0] + " already in cart!", Snackbar.LENGTH_SHORT).show();
 				}
 				else{
 					db.addFood(new Food(email, food[0],position));
-					Log.d("Position", String.valueOf(position) + " " + food[0]);
+					Snackbar.make(v, food[0] + " added to cart!", Snackbar.LENGTH_SHORT).show();
 				}
 				break;
 			case R.id.food_cart2:
 				position = food_pos + 1;
 				if(db.checkFood(email,food[1])){
-					Toast.makeText(getApplicationContext(),"Food already in cart!", Toast.LENGTH_SHORT).show();
+					Snackbar.make(v,food[1] + " already in cart!", Snackbar.LENGTH_SHORT).show();
 				}
 				else{
 					db.addFood(new Food(email, food[1], position));
-					Log.d("Position", String.valueOf(position) + " " + food[1]);
+					Snackbar.make(v, food[1] + " added to cart!", Snackbar.LENGTH_SHORT).show();
 				}
 				break;
 			case R.id.food_cart3:
 				position = food_pos + 2;
 				if(db.checkFood(email,food[2])){
-					Toast.makeText(getApplicationContext(),"Food already in cart!", Toast.LENGTH_SHORT).show();
+					Snackbar.make(v,food[2] + " already in cart!", Snackbar.LENGTH_SHORT).show();
 				}
 				else{
 					db.addFood(new Food(email, food[2], position));
-					Log.d("Position", String.valueOf(position) + " " + food[2]);
+					Snackbar.make(v, food[2] + " added to cart!", Snackbar.LENGTH_SHORT).show();
 				}
 				break;
 			case R.id.food_cart4:
 				position = food_pos + 3;
 				if(db.checkFood(email,food[3])){
-					Toast.makeText(getApplicationContext(),"Food already in cart!", Toast.LENGTH_SHORT).show();
+					Snackbar.make(v,food[3] + " already in cart!", Snackbar.LENGTH_SHORT).show();
 				}
 				else{
 					db.addFood(new Food(email, food[3], position));
-					Log.d("Position", String.valueOf(position) + " " + food[3]);
+					Snackbar.make(v, food[3] + " added to cart!", Snackbar.LENGTH_SHORT).show();
 				}
 				break;
 			case R.id.cart:
