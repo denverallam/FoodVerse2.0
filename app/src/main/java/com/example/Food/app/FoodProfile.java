@@ -35,8 +35,8 @@ public class FoodProfile extends AppCompatActivity{
 				R.drawable.header_l1, R.drawable.header_l1,
 				R.drawable.header_be1, R.drawable.header_be2,
 				R.drawable.header_be3, R.drawable.header_be4,
-				R.drawable.header_l1, R.drawable.header_l1,
-				R.drawable.header_l1, R.drawable.header_l1,};
+				R.drawable.header_s1, R.drawable.header_s2,
+				R.drawable.header_s3, R.drawable.header_s4,};
 
 		int food_id = getIntent().getIntExtra("id",0);
 		foodSteps.setText(steps[food_id]);
