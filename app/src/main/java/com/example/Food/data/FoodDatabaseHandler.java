@@ -62,8 +62,8 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 		List<Food> foodList = new ArrayList<>();
 		SQLiteDatabase db = this.getReadableDatabase();
 		//Select all contacts
-		String selectAll = "SELECT * FROM " + FoodUtil.TABLE_NAME + " WHERE " + FoodUtil.FOOD_EMAIL + "=?";
-		Cursor cursor = db.rawQuery(selectAll, 		new String[]{email});
+		String selectAll = "SELECT * FROM " + FoodUtil.TABLE_NAME + " WHERE " + FoodUtil.FOOD_EMAIL + "=?" + " ORDER BY " + FoodUtil.KEY_ID + " DESC";
+		Cursor cursor = db.rawQuery(selectAll, new String[]{email} );
 
 		//Loop through the data
 		if(cursor.moveToFirst()){
