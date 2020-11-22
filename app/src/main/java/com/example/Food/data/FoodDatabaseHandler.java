@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.example.Food.model.Food;
 import com.example.Food.util.FoodUtil;
+import com.example.Food.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,15 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 		//Insert to row
 		db.insert(FoodUtil.TABLE_NAME, null, values);
 		db.close(); //close db connection
+	}
+	public Boolean checkFood(String email, String name){
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery("SELECT * FROM " + FoodUtil.TABLE_NAME + " WHERE " + FoodUtil.FOOD_EMAIL + "=?" + " AND " + FoodUtil.FOOD_NAME + "=?",
+				new String[]{email,name});
+		if(cursor.getCount()>0)
+			return true;
+		else
+			return false;
 	}
 	public List<Food> getAllFood(String email){
 		List<Food> foodList = new ArrayList<>();

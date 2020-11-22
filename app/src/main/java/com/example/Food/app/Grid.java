@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.example.Food.R;
 import com.example.Food.data.FoodDatabaseHandler;
@@ -32,7 +34,7 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_grid);
 
-		int position = getIntent().getIntExtra("POSITION",0);
+		int position = getIntent().getIntExtra("CATEGORY",0);
 		Login login = new Login();
 		email = login.userEmail;
 
@@ -57,6 +59,11 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		food_cart2.setOnClickListener(this);
 		food_cart3.setOnClickListener(this);
 		food_cart4.setOnClickListener(this);
+
+		food1_image.setOnClickListener(this);
+		food2_image.setOnClickListener(this);
+		food3_image.setOnClickListener(this);
+		food4_image.setOnClickListener(this);
 
 		List<Food> foodList = db.getAllFood(email);
 		for(Food food: foodList){
@@ -133,27 +140,69 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 				break;
 		}
 	}
-
 	@Override
 	public void onClick(View v){
 		Intent intent = new Intent(Grid.this, Cart.class);
-		int position = getIntent().getIntExtra("POSITION",0);
+		int category = getIntent().getIntExtra("CATEGORY",0);
+		int position;
+		switch(category){
+			case 0:
+				food_pos = 0;
+				break;
+			case 1:
+				food_pos = 4;
+				break;
+			case 2:
+				food_pos = 8;
+				break;
+			case 3:
+				food_pos = 12;
+				break;
+			case 4:
+				food_pos = 16;
+				break;
+		}
+		openFoodProfile(v,food_pos);
 		switch(v.getId()){
 			case R.id.food_cart1:
-				food_pos = 0;
-				db.addFood(new Food(email, food[food_pos],food_pos));
+				position = food_pos;
+				if(db.checkFood(email,food[0])){
+					Toast.makeText(getApplicationContext(),"Food already in cart!", Toast.LENGTH_SHORT).show();
+				}
+				else{
+					db.addFood(new Food(email, food[0],position));
+					Log.d("Position", String.valueOf(position) + " " + food[0]);
+				}
 				break;
 			case R.id.food_cart2:
-				food_pos = 1;
-				db.addFood(new Food(email, food[food_pos],food_pos));
+				position = food_pos + 1;
+				if(db.checkFood(email,food[1])){
+					Toast.makeText(getApplicationContext(),"Food already in cart!", Toast.LENGTH_SHORT).show();
+				}
+				else{
+					db.addFood(new Food(email, food[1], position));
+					Log.d("Position", String.valueOf(position) + " " + food[1]);
+				}
 				break;
 			case R.id.food_cart3:
-				food_pos = 2;
-				db.addFood(new Food(email, food[food_pos],food_pos));
+				position = food_pos + 2;
+				if(db.checkFood(email,food[2])){
+					Toast.makeText(getApplicationContext(),"Food already in cart!", Toast.LENGTH_SHORT).show();
+				}
+				else{
+					db.addFood(new Food(email, food[2], position));
+					Log.d("Position", String.valueOf(position) + " " + food[2]);
+				}
 				break;
 			case R.id.food_cart4:
-				food_pos = 3;
-				db.addFood(new Food(email, food[food_pos],food_pos));
+				position = food_pos + 3;
+				if(db.checkFood(email,food[3])){
+					Toast.makeText(getApplicationContext(),"Food already in cart!", Toast.LENGTH_SHORT).show();
+				}
+				else{
+					db.addFood(new Food(email, food[3], position));
+					Log.d("Position", String.valueOf(position) + " " + food[3]);
+				}
 				break;
 			case R.id.cart:
 				Log.d("Size", String.valueOf(foodArrayList.size()));
@@ -161,5 +210,31 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 				break;
 		}
 
+
+	}
+	public void openFoodProfile(View v, int food_pos){
+		Intent intent = new Intent(getApplicationContext(), FoodProfile.class);
+		switch(v.getId()){
+			case R.id.food1_image:
+				intent.putExtra("id", food_pos);
+				Log.d("Position", String.valueOf(food_pos));
+				startActivity(intent);
+				break;
+			case R.id.food2_image:
+				intent.putExtra("id", food_pos + 1);
+				Log.d("Position", String.valueOf(food_pos + 1));
+				startActivity(intent);
+				break;
+			case R.id.food3_image:
+				intent.putExtra("id", food_pos + 2);
+				Log.d("Position", String.valueOf(food_pos + 2));
+				startActivity(intent);
+				break;
+			case R.id.food4_image:
+				intent.putExtra("id", food_pos + 3);
+				Log.d("Position", String.valueOf(food_pos + 3));
+				startActivity(intent);
+				break;
+		}
 	}
 }

@@ -52,7 +52,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 		public void onClick(View v){
 			int position = getAdapterPosition();
 			Intent intent = new Intent(context, Grid.class);
-			intent.putExtra("POSITION",position);
+			intent.putExtra("CATEGORY",position);
 			context.startActivity(intent);
 		}
 	}

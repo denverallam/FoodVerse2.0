@@ -26,7 +26,19 @@ public class Cart extends AppCompatActivity{
 	TextView textView;
 
 	ArrayList<Food> foodArrayList =  new ArrayList<>();
-	int images[];
+	int images[] =  {
+			R.drawable.breakfast_b1,R.drawable.breakfast_b2,
+			R.drawable.breakfast_b3,R.drawable.breakfast_b4,
+			R.drawable.lunch_l1,R.drawable.lunch_l2,
+			R.drawable.lunch_l3,R.drawable.lunch_l4,
+			R.drawable.dinner_d1,R.drawable.dinner_d2,
+			R.drawable.dinner_d3,R.drawable.dinner_d4,
+			R.drawable.beverage_b1,R.drawable.beverage_b2,
+			R.drawable.beverage_b3,R.drawable.beverage_b4,
+			R.drawable.snack_s1,R.drawable.snack_s2,
+			R.drawable.snack_s3,R.drawable.snack_s4
+	};
+
 	String email;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -39,48 +51,12 @@ public class Cart extends AppCompatActivity{
 		recyclerView = findViewById(R.id.cart_recycler);
 		imageView = findViewById(R.id.food_image);
 		textView = findViewById(R.id.food_text);
+
 		FoodDatabaseHandler db = new FoodDatabaseHandler(this);
-		int position = getIntent().getIntExtra("POSITION",0);
 
-
-		switch(position){
-			case 0:
-				int breakfast[] = {
-						R.drawable.breakfast_b1,R.drawable.breakfast_b2,
-						R.drawable.breakfast_b3,R.drawable.breakfast_b4,};
-				images = breakfast;
-				break;
-			case 1:
-				int lunch[] = {
-						R.drawable.lunch_l1,R.drawable.lunch_l2,
-						R.drawable.lunch_l3,R.drawable.lunch_l4,};
-				images = lunch;
-				break;
-			case 2:
-			int dinner[] = {
-					R.drawable.dinner_d1,R.drawable.dinner_d2,
-					R.drawable.dinner_d3,R.drawable.dinner_d4,};
-			images = dinner;
-				break;
-			case 3:
-				int beverage[] = {
-						R.drawable.beverage_b1,R.drawable.beverage_b2,
-						R.drawable.beverage_b3,R.drawable.beverage_b4,};
-				images = beverage;
-				break;
-			case 4:
-				int snack[] = {
-						R.drawable.snack_s1,R.drawable.snack_s2,
-						R.drawable.snack_s3,R.drawable.snack_s4};
-				images = snack;
-				break;
-		}
 		List<Food> foodList = db.getAllFood(email);
-		for(Food food: foodList){
-			foodArrayList.add(food);
-		}
+		foodArrayList.addAll(foodList);
 
-		Log.d("Size", String.valueOf(foodArrayList.size()));
 		CartAdapter myAdapter = new CartAdapter(this,foodArrayList,images);
 		recyclerView.setAdapter(myAdapter);
 		recyclerView.setHasFixedSize(true);

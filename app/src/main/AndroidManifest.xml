@@ -8,22 +8,25 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.Signup"/>
+        <activity android:name=".app.FoodProfile"></activity>
+        <activity android:name=".app.Signup" />
         <activity android:name=".app.Login">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="com.package.name.MyActivity"/>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.package.name.MyActivity" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".app.Cart" />
-        <activity android:name=".app.MainActivity"
-            android:parentActivityName=".app.Login"/>
+        <activity
+            android:name=".app.MainActivity"
+            android:parentActivityName=".app.Login" />
         <activity
             android:name=".app.Grid"
             android:label="Details"
