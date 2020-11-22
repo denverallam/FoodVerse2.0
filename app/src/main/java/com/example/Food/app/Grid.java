@@ -22,8 +22,9 @@ import java.util.List;
 
 public class Grid extends AppCompatActivity implements View.OnClickListener{
 
-	ImageView header, food1_image, food2_image, food3_image, food4_image;
-	Button food_cart1, food_cart2, food_cart3, food_cart4,cart;
+	ImageView header, food1_image, food2_image, food3_image, food4_image, cart;
+	ImageView account, home;
+	Button food_cart1, food_cart2, food_cart3, food_cart4;
 	TextView food1_text, food2_text, food3_text, food4_text;
 	FoodDatabaseHandler db = new FoodDatabaseHandler(this);
 	ArrayList<Food> foodArrayList = new ArrayList<>();
@@ -49,6 +50,9 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		food_cart2 = findViewById(R.id.food_cart2);
 		food_cart3 = findViewById(R.id.food_cart3);
 		food_cart4 = findViewById(R.id.food_cart4);
+
+		account = findViewById(R.id.account_image);
+		home = findViewById(R.id.category_image);
 		cart = findViewById(R.id.cart);
 
 		food1_text = findViewById(R.id.food1_text);
@@ -140,6 +144,22 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 				food4_text.setText(food[3]);
 				break;
 		}
+
+		home.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				startActivity(new Intent(getApplicationContext(), MainActivity.class));
+				finish();
+			}
+		});
+		account.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				startActivity(new Intent(getApplicationContext(), Account.class));
+				finish();
+			}
+		});
+
 	}
 	@Override
 	public void onClick(View v){

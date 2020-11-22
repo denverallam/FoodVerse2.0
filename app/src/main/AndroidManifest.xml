@@ -15,6 +15,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".app.FoodProfile"></activity>
         <activity android:name=".app.Signup" />
+        <activity android:name=".app.Account"
+            android:parentActivityName=".app.MainActivity"/>
         <activity android:name=".app.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

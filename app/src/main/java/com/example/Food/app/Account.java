@@ -5,11 +5,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.Food.R;
 import com.example.Food.adapter.CartAdapter;
@@ -17,6 +19,7 @@ import com.example.Food.data.DatabaseHandler;
 import com.example.Food.data.FoodDatabaseHandler;
 import com.example.Food.model.Food;
 import com.example.Food.model.User;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +28,12 @@ public class Account extends AppCompatActivity{
 	RecyclerView recyclerView;
 	ImageView imageView;
 	TextView textView;
-	private Button edit,save;
+	private Button edit,save,cancel;
 	private EditText firstName, lastName, email;
 	String userEmail;
 	Login log = new Login();
-
+	Signup signup = new Signup();
+	DatabaseHandler data = new DatabaseHandler(this);
 	int images[] =  {
 			R.drawable.breakfast_b1,R.drawable.breakfast_b2,
 			R.drawable.breakfast_b3,R.drawable.breakfast_b4,
@@ -54,20 +58,20 @@ public class Account extends AppCompatActivity{
 		recyclerView = findViewById(R.id.like_recycler);
 		imageView = findViewById(R.id.like_image);
 		textView = findViewById(R.id.like_text);
+
 		FoodDatabaseHandler db = new FoodDatabaseHandler(this);
-		DatabaseHandler data = new DatabaseHandler(this);
 
-		int position = getIntent().getIntExtra("POSITION",0);
-
+		cancel = findViewById(R.id.cancel_button);
 		save = findViewById(R.id.save_button);
 		edit = findViewById(R.id.edit_image);
 		firstName = findViewById(R.id.firstName_text);
-		firstName = findViewById(R.id.lastName_text);
-
+		lastName = findViewById(R.id.lastName_text);
 		email = findViewById(R.id.email_text);
-		save.setVisibility(View.INVISIBLE);
 
-		User user = data.getUser(log.userEmail);
+		save.setVisibility(View.INVISIBLE);
+		cancel.setVisibility(View.INVISIBLE);
+
+		final User user = data.getUser(log.userEmail);
 		firstName.setText(user.getFirstName());
 		lastName.setText(user.getLastName());
 		email.setText(user.getEmail());
@@ -79,23 +83,62 @@ public class Account extends AppCompatActivity{
 				lastName.setFocusableInTouchMode(true);
 				email.setFocusableInTouchMode(true);
 				save.setVisibility(View.VISIBLE);
+				cancel.setVisibility(View.VISIBLE);
+				Log.d("Edit", "working");
 			}
 		});
 
 		save.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v){
-				firstName.setText(firstName.getText());
-				lastName.setText(firstName.getText());
-				email.setText(email.getText());
+				User newUser = new User();
 
+				newUser.setEmail(email.getText().toString());
+				newUser.setFirstName(firstName.getText().toString());
+				newUser.setLastName(lastName.getText().toString());
+				newUser.setPassword(user.getPassword());
+
+
+				int isVerified =  verifyAccount(v, newUser.getEmail(),newUser.getFirstName(), newUser.getLastName());
+				switch(isVerified){
+					case 0:
+						Snackbar.make(v,"Fields are empty!", Snackbar.LENGTH_SHORT).show();
+						break;
+					case 1:
+						Snackbar.make(v,"Use valid email format!", Snackbar.LENGTH_SHORT).show();
+						break;
+					case 2:
+						Snackbar.make(v,"Email is already used!", Snackbar.LENGTH_SHORT).show();
+						break;
+					case 3:
+						data.updateUser(newUser);
+						firstName.setText(newUser.getFirstName());
+						lastName.setText(newUser.getLastName());
+						email.setText(newUser.getEmail());
+
+						Log.d("Account", newUser.getEmail() + "\n" + newUser.getFirstName()
+								+ "\n" + newUser.getLastName());
+
+						firstName.setFocusable(false);
+						lastName.setFocusable(false);
+						email.setFocusable(false);
+						save.setVisibility(View.INVISIBLE);
+						cancel.setVisibility(View.INVISIBLE);
+						break;
+				}
+
+			}
+		});
+		cancel.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
 				firstName.setFocusable(false);
 				lastName.setFocusable(false);
 				email.setFocusable(false);
 				save.setVisibility(View.INVISIBLE);
+				cancel.setVisibility(View.INVISIBLE);
 			}
 		});
-
 		List<Food> foodList = db.getAllFood(userEmail);
 		for(Food food: foodList){
 			foodArrayList.add(food);
@@ -106,4 +149,24 @@ public class Account extends AppCompatActivity{
 		recyclerView.setHasFixedSize(true);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
 	}
+
+	public int verifyAccount(View v,String email, String firstname, String lastname){
+		if(email.equals("")  || firstname.equals("") || lastname.equals("")){
+			return 0;
+		}
+		else{
+			if(!signup.isEmailValid(email)){
+					return 1;
+			}
+			else{
+					Boolean checkEmail = data.checkEmail(email);
+					if(checkEmail==true){
+						return 3;
+					}
+					else{
+						return 2;
+					}
+				}
+			}
+		}
 }

@@ -76,6 +76,18 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 				new String[]{email});
 		db.close();
 	}
+	public int updateUser(User user){
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+
+		values.put(Util.KEY_EMAIL, user.getEmail());
+		values.put(Util.KEY_FIRST_NAME, user.getFirstName());
+		values.put(Util.KEY_LAST_NAME, user.getLastName());
+		values.put(Util.KEY_PASSWORD, user.getPassword());
+
+		return db.update(Util.TABLE_NAME, values, Util.KEY_EMAIL + "+?",
+				new String[]{String.valueOf(user.getEmail())});
+	}
 	//Get User
 	public User getUser(String email){
 		SQLiteDatabase db = this.getReadableDatabase();
