@@ -35,8 +35,10 @@ public class Account extends AppCompatActivity{
 	TextView email;
 	String userEmail;
 	Login log = new Login();
-	Signup signup = new Signup();
 	DatabaseHandler data = new DatabaseHandler(this);
+
+	//Store images in int array
+	//Alt + Click to view image
 	int images[] =  {
 			R.drawable.breakfast_b1,R.drawable.breakfast_b2,
 			R.drawable.breakfast_b3,R.drawable.breakfast_b4,
@@ -49,6 +51,7 @@ public class Account extends AppCompatActivity{
 			R.drawable.snack_s1,R.drawable.snack_s2,
 			R.drawable.snack_s3,R.drawable.snack_s4
 	};
+	//Instantiate an arraylist that contains list of food object
 	ArrayList<Food> foodArrayList =  new ArrayList<>();
 	@Override
 
@@ -57,12 +60,15 @@ public class Account extends AppCompatActivity{
 		setContentView(R.layout.activity_account);
 
 		Login login = new Login();
+
+		//Get user email from Login Activity
 		userEmail = login.userEmail;
 
 		recyclerView = findViewById(R.id.like_recycler);
 		imageView = findViewById(R.id.like_image);
 		textView = findViewById(R.id.like_text);
 
+		//Instantiate an object of database
 		FoodDatabaseHandler db = new FoodDatabaseHandler(this);
 
 		cancel = findViewById(R.id.cancel_button);
@@ -73,10 +79,14 @@ public class Account extends AppCompatActivity{
 		lastName = findViewById(R.id.lastName_text);
 		email = findViewById(R.id.email_text);
 
+		//Save and Cancel button is set to invisibile by default
 		save.setVisibility(View.INVISIBLE);
 		cancel.setVisibility(View.INVISIBLE);
 
+		//Fetch user details from Login Activity
 		final User user = data.getUser(log.userEmail);
+
+		//Display user details
 		firstName.setText(user.getFirstName());
 		lastName.setText(user.getLastName());
 		email.setText(user.getEmail());
@@ -106,8 +116,11 @@ public class Account extends AppCompatActivity{
 		edit.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v){
+				//Enable editing
 				firstName.setFocusableInTouchMode(true);
 				lastName.setFocusableInTouchMode(true);;
+
+				//Show save and cancel button
 				save.setVisibility(View.VISIBLE);
 				cancel.setVisibility(View.VISIBLE);
 				Log.d("Edit", "working");
@@ -125,27 +138,31 @@ public class Account extends AppCompatActivity{
 			public void onClick(View v){
 				User newUser = new User();
 
+				//Store new user details to newUser object
 				newUser.setEmail(email.getText().toString());
 				newUser.setFirstName(firstName.getText().toString());
 				newUser.setLastName(lastName.getText().toString());
 				newUser.setPassword(user.getPassword());
 
+				//Check if user input is valid
 				int isVerified =  verifyAccount(newUser.getFirstName(), newUser.getLastName());
 				switch(isVerified){
-					case 0:
+					case 0: //Invalid input
 						Snackbar.make(v,"Fields are empty!", Snackbar.LENGTH_SHORT).show();
 						break;
-					case 1:
+					case 1: //Valid input
+						//Update User's first name and last name
 						data.updateUser(newUser);
 
+						//Display updated profile
 						firstName.setText(newUser.getFirstName());
 						lastName.setText(newUser.getLastName());
 
-						Log.d("Account", newUser.getEmail() + "\n" + newUser.getFirstName()
-								+ "\n" + newUser.getLastName());
-
+						//Disable EditText for name
 						firstName.setFocusable(false);
 						lastName.setFocusable(false);
+
+						//Hide save and cancel button
 						save.setVisibility(View.INVISIBLE);
 						cancel.setVisibility(View.INVISIBLE);
 						break;
@@ -156,30 +173,36 @@ public class Account extends AppCompatActivity{
 		cancel.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v){
+				//Disable EditText for name
 				firstName.setFocusable(false);
 				lastName.setFocusable(false);
+
+				//Hide save and cancel button
 				save.setVisibility(View.INVISIBLE);
 				cancel.setVisibility(View.INVISIBLE);
 			}
 		});
 
+		//Store all food from cart and pass it to foodArrayList
 		List<Food> foodList = db.getAllFood(userEmail);
 		for(Food food: foodList){
 			foodArrayList.add(food);
 		}
 
+		//Inflate the data of foodArrayList to Recyclervieww Adapter
 		CartAdapter myAdapter = new CartAdapter(this, foodArrayList,images);
 		recyclerView.setAdapter(myAdapter);
 		recyclerView.setHasFixedSize(true);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
 	}
 
+	//Check if user input has string
 	public int verifyAccount(String firstname, String lastname){
 		if(firstname.equals("") || lastname.equals("")){
-			return 0;
+			return 0; //Invalid input
 		}
 		else{
-			return 1;
+			return 1; //Valid Input
 		}
 	}
 }

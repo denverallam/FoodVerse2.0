@@ -26,6 +26,9 @@ public class Cart extends AppCompatActivity{
 	TextView textView;
 
 	ArrayList<Food> foodArrayList =  new ArrayList<>();
+
+	//Store images in int array
+	//Alt + Click to view image
 	int images[] =  {
 			R.drawable.breakfast_b1,R.drawable.breakfast_b2,
 			R.drawable.breakfast_b3,R.drawable.breakfast_b4,

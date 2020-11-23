@@ -25,8 +25,15 @@ public class FoodProfile extends AppCompatActivity{
 		foodIngredients = findViewById(R.id.food_ingredients);
 		header = findViewById(R.id.prof_header);
 
+		//Store "steps" string array resources from string.xml values to String array
 		steps = getResources().getStringArray(R.array.steps);
+
+		//Store "ingredients" string array resources from string.xml values to String array
 		ingredients = getResources().getStringArray(R.array.ingredients);
+
+		//Store images in int array
+		//Alt + Click to view image
+		//20 images --> id will be from 0-19
 		images = new int[]{R.drawable.header_b1, R.drawable.header_b2,
 				R.drawable.header_b3, R.drawable.header_b4,
 				R.drawable.header_l1, R.drawable.header_l2,
@@ -38,9 +45,13 @@ public class FoodProfile extends AppCompatActivity{
 				R.drawable.header_s1, R.drawable.header_s2,
 				R.drawable.header_s3, R.drawable.header_s4,};
 
+		//Fetch id of clicked image from Grid.class
 		int food_id = getIntent().getIntExtra("id",0);
+		//Set steps and ingredients text using id ---> id being 0-19
 		foodSteps.setText(steps[food_id]);
 		foodIngredients.setText(ingredients[food_id]);
+
+		//Set image using id ---> id being 0-19
 		header.setImageResource(images[food_id]);
 	}
 }

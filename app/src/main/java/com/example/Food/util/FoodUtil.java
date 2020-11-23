@@ -2,12 +2,13 @@ package com.example.Food.util;
 
 public class FoodUtil{
 
-	//Database related items
+	//Used in FoodDatabaseHandler class
+	//Database and Table Name
 	public static final int DATABASE_VERSION = 20;
 	public static final String DATABASE_NAME = "Food_Database";
 	public static final String TABLE_NAME = "Cart";
 
-	//Contacts table column names
+	//Cart table column names
 	public static final String KEY_ID = "id";
 	public static final String FOOD_EMAIL = "food_email";
 	public static final String FOOD_NAME = "food_name";

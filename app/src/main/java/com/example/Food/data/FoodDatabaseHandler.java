@@ -34,9 +34,10 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
 		db.execSQL("DROP TABLE IF EXISTS " +  FoodUtil.TABLE_NAME);
 
-		//Create a table again
 		onCreate(db);
 	}
+
+	//Add food to cart
 	public void addFood(Food food){
 		SQLiteDatabase db = this.getWritableDatabase();
 		Log.d("Database", "onCreate: Added");
@@ -49,6 +50,8 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 		db.insert(FoodUtil.TABLE_NAME, null, values);
 		db.close(); //close db connection
 	}
+
+	//check if food exists
 	public Boolean checkFood(String email, String name){
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM " + FoodUtil.TABLE_NAME + " WHERE " + FoodUtil.FOOD_EMAIL + "=?" + " AND " + FoodUtil.FOOD_NAME + "=?",
@@ -58,6 +61,8 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 		else
 			return false;
 	}
+
+	//get all food added by the user
 	public List<Food> getAllFood(String email){
 		List<Food> foodList = new ArrayList<>();
 		SQLiteDatabase db = this.getReadableDatabase();
@@ -81,6 +86,7 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 		}
 		return foodList;
 	}
+	//delete food
 	public void deleteFood(int id){
 		SQLiteDatabase db = this.getReadableDatabase();
 		db.delete(FoodUtil.TABLE_NAME, FoodUtil.KEY_ID + "=?",

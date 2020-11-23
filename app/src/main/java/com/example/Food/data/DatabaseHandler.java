@@ -58,7 +58,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		else
 			return true;
 	}
-	//check if credentials are correct
+	//check if user exists
 	public Boolean checkUser(String email, String password){
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("Select * from " + Util.TABLE_NAME + " where " + Util.KEY_EMAIL + "=?" + " and " + Util.KEY_PASSWORD + "=?",
@@ -68,7 +68,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		else
 			return false;
 	}
-	//Delete Contact
+	//Delete user
 	public void deleteUser(String email){
 		SQLiteDatabase db = this.getWritableDatabase();
 
@@ -76,6 +76,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 				new String[]{email});
 		db.close();
 	}
+	//Update user profile
 	public int updateUser(User user){
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();

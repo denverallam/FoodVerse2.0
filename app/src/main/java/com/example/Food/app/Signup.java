@@ -48,23 +48,24 @@ public class Signup extends AppCompatActivity{
 				String lastName = lastNameText.getText().toString();
 				String confirmPassword = confirmText.getText().toString();
 
+				//Check if user input is empty
 				if(email.equals("") || password.equals("") || firstName.equals("") || lastName.equals("") || confirmPassword.equals("")){
 					Toast.makeText(getApplicationContext(), "Fields are empty!", Toast.LENGTH_SHORT).show();
 				}
-				else{
-					if(!isEmailValid(email) || !isPasswordValid(password)){
-						if(!isEmailValid(email)){
+				else{//if not empty
+					if(!isEmailValid(email) || !isPasswordValid(password)){//check if both email and password are valid
+						if(!isEmailValid(email)){//if email is not valid
 							Snackbar.make(v, "Use valid email format", Snackbar.LENGTH_LONG).show();
 						}
-						else{
+						else{//if password is not valid
 							Snackbar.make(v, "Password must have:\n" + "At least 8 characters\n" + "At least one numeric value\n" +
 									"At least one lower case alphabet\n" + "At least one upper case alphabet", Snackbar.LENGTH_LONG).show();
 						}
 					}
-					else{
-						if(password.equals(confirmPassword)){
+					else{//if user input is valid, and both email and password are valid
+						if(password.equals(confirmPassword)){//check if 2 passwords match
 							Boolean checkEmail = db.checkEmail(email);
-							if(checkEmail==true){
+							if(checkEmail==true){//check if email already exists
 								User user = new User();
 								user.setEmail(email);
 								user.setFirstName(firstName);
@@ -74,11 +75,11 @@ public class Signup extends AppCompatActivity{
 								Snackbar.make(v, "Account Registered!", Snackbar.LENGTH_SHORT).show();
 								finish();
 							}
-							else{
+							else{//email is already used
 								Snackbar.make(v, "Email is already used!", Snackbar.LENGTH_SHORT).show();
 							}
 						}
-						else {
+						else {//password does not match
 							Snackbar.make(v, "Password do not match!", Snackbar.LENGTH_SHORT).show();
 						}
 					}

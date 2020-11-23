@@ -50,16 +50,19 @@ public class Login extends AppCompatActivity{
 				Boolean userExists = db.checkUser(email,password);
 				//If email and password is correct (email and password exist in database); proceed
 				if(userExists==true){
-					//Get the first name of the the user
+
+					//Get email of the user - to be used in database
 					userEmail = email;
+					//get user with email == input of user
 					User user = db.getUser(email);
 					user.setEmail(email);
-					Toast.makeText(getApplicationContext(), "WELCOME " + user.getFirstName().toUpperCase(), Toast.LENGTH_SHORT).show();
+
+					Snackbar.make(v, "WELCOME " + user.getFirstName().toUpperCase(), Snackbar.LENGTH_LONG).show();
 					startActivity(new Intent(Login.this,MainActivity.class));
 					finish();
 				}
 				else{
-					//If email or password is incorrect, show toast message
+					//If email or password is incorrect, show snackbar message
 					Snackbar.make(v, "Email/Password incorrect!!", Snackbar.LENGTH_SHORT).show();
 					emailText.setText("");
 					passwordText.setText("");

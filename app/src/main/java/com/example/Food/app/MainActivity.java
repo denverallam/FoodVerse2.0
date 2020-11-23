@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity{
 
 	RecyclerView recyclerView;
 	ImageView account, cook, dish;
+
+	//Store category images in int array
 	int images[] = {
 			R.drawable.breakfast,R.drawable.lunch,
 			R.drawable.dinner,R.drawable.beverage,
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity{
 		dish = findViewById(R.id.dish_image);
 		recyclerView = findViewById(R.id.recyclerView);
 
+		//Pass int array containg category images to RecyclerView
 		MyAdapter myAdapter = new MyAdapter(this,images);
 		recyclerView.setAdapter(myAdapter);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));

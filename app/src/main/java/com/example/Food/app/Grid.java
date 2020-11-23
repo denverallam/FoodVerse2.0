@@ -74,32 +74,38 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		dish.setOnClickListener(this);
 		cook.setOnClickListener(this);
 
+		//Store all food from database and store it to foodList
 		List<Food> foodList = db.getAllFood(email);
 		for(Food food: foodList){
 			foodArrayList.add(food);
 		}
 
-		switch(position){
-			case 0:
+		//Use different image and text resources depending on category clicked
+		switch(position){ //position = category
+			case 0: //breakfast
+				//set breakfast image from drawable
 				header.setImageResource(R.drawable.breakfast_header);
 				food1_image.setImageResource(R.drawable.breakfast_b1);
 				food2_image.setImageResource(R.drawable.breakfast_b2);
 				food3_image.setImageResource(R.drawable.breakfast_b3);
 				food4_image.setImageResource(R.drawable.breakfast_b4);
 
+				//get breakfast string array value from string.xml
 				food = getResources().getStringArray(R.array.breakfast);
 				food1_text.setText(food[0]);
 				food2_text.setText(food[1]);
 				food3_text.setText(food[2]);
 				food4_text.setText(food[3]);
 				break;
-			case 1:
+			case 1: //lunch
+
+				//set lunch image from drawable
 				header.setImageResource(R.drawable.lunch_header);
 				food1_image.setImageResource(R.drawable.lunch_l1);
 				food2_image.setImageResource(R.drawable.lunch_l2);
 				food3_image.setImageResource(R.drawable.lunch_l3);
 				food4_image.setImageResource(R.drawable.lunch_l4);
-
+				//get lunch string array value from string.xml
 				food = getResources().getStringArray(R.array.lunch);
 				food1_text.setText(food[0]);
 				food2_text.setText(food[1]);
@@ -107,39 +113,42 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 				food4_text.setText(food[3]);
 
 				break;
-			case 2:
+			case 2: //dinner
+				//set dinner image from drawable
 				header.setImageResource(R.drawable.dinner_header);
 				food1_image.setImageResource(R.drawable.dinner_d1);
 				food2_image.setImageResource(R.drawable.dinner_d2);
 				food3_image.setImageResource(R.drawable.dinner_d3);
 				food4_image.setImageResource(R.drawable.dinner_d4);
-
+				//get dinner string array value from string.xml
 				food = getResources().getStringArray(R.array.dinner);
 				food1_text.setText(food[0]);
 				food2_text.setText(food[1]);
 				food3_text.setText(food[2]);
 				food4_text.setText(food[3]);
 				break;
-			case 3:
+			case 3: //beverage
+				//set beverage image from drawable
 				header.setImageResource(R.drawable.beverage_header);
 				food1_image.setImageResource(R.drawable.beverage_b1);
 				food2_image.setImageResource(R.drawable.beverage_b2);
 				food3_image.setImageResource(R.drawable.beverage_b3);
 				food4_image.setImageResource(R.drawable.beverage_b4);
-
+				//get beverage string array value from string.xml
 				food = getResources().getStringArray(R.array.beverage);
 				food1_text.setText(food[0]);
 				food2_text.setText(food[1]);
 				food3_text.setText(food[2]);
 				food4_text.setText(food[3]);
 				break;
-			case 4:
+			case 4: //snack
+				//set snack image from drawable
 				header.setImageResource(R.drawable.snack_header);
 				food1_image.setImageResource(R.drawable.snack_s1);
 				food2_image.setImageResource(R.drawable.snack_s2);
 				food3_image.setImageResource(R.drawable.snack_s3);
 				food4_image.setImageResource(R.drawable.snack_s4);
-
+				//get snack string array value from string.xml
 				food = getResources().getStringArray(R.array.snack);
 				food1_text.setText(food[0]);
 				food2_text.setText(food[1]);
@@ -167,63 +176,79 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 	@Override
 	public void onClick(View v){
 		Intent intent = new Intent(Grid.this, Cart.class);
+		//get value passed from MainActivity
 		int category = getIntent().getIntExtra("CATEGORY",0);
 		int position;
-		switch(category){
-			case 0:
+		switch(category){ //set id depending on category
+			case 0://breakfast
+				//id will start at 0
 				food_pos = 0;
+				//id will be 0-3
 				break;
-			case 1:
+			case 1://lunch
+				//id will start at 4
 				food_pos = 4;
+				//id will be 4-7
 				break;
-			case 2:
+			case 2://breakfast
+				//id will start at 8
 				food_pos = 8;
-				break;
-			case 3:
+				//id will be 8-9
+				break;//breakfast
+			//id will start at 0
+			case 3://breakfast
+				//id will start at 12
 				food_pos = 12;
+				//id will be 12-15
 				break;
-			case 4:
+			case 4://breakfast
+				//id will start at 16
 				food_pos = 16;
+				//id will be 16-19
 				break;
 		}
 		openFoodProfile(v,food_pos);
 		switch(v.getId()){
 			case R.id.food_cart1:
+				//if first food image is clicked, id == food_pos
 				position = food_pos;
-				if(db.checkFood(email,food[0])){
+				if(db.checkFood(email,food[0])){//if food is aleady added, display snackbar message
 					Snackbar.make(v,food[0] + " already in cart!", Snackbar.LENGTH_SHORT).show();
 				}
-				else{
+				else{//add food to cart database
 					db.addFood(new Food(email, food[0],position));
 					Snackbar.make(v, food[0] + " added to cart!", Snackbar.LENGTH_SHORT).show();
 				}
 				break;
 			case R.id.food_cart2:
+				//if second food image is clicked, id == food_pos+1
 				position = food_pos + 1;
-				if(db.checkFood(email,food[1])){
+				if(db.checkFood(email,food[1])){//if food is aleady added, display snackbar message
 					Snackbar.make(v,food[1] + " already in cart!", Snackbar.LENGTH_SHORT).show();
 				}
-				else{
+				else{//add food to cart database
 					db.addFood(new Food(email, food[1], position));
 					Snackbar.make(v, food[1] + " added to cart!", Snackbar.LENGTH_SHORT).show();
 				}
 				break;
 			case R.id.food_cart3:
+				//if third food image is clicked, id == food_pos + 2
 				position = food_pos + 2;
-				if(db.checkFood(email,food[2])){
+				if(db.checkFood(email,food[2])){//if food is aleady added, display snackbar message
 					Snackbar.make(v,food[2] + " already in cart!", Snackbar.LENGTH_SHORT).show();
 				}
-				else{
+				else{//add food to cart database
 					db.addFood(new Food(email, food[2], position));
 					Snackbar.make(v, food[2] + " added to cart!", Snackbar.LENGTH_SHORT).show();
 				}
 				break;
 			case R.id.food_cart4:
+				//if fourth food image is clicked, id == food_pos + 3
 				position = food_pos + 3;
-				if(db.checkFood(email,food[3])){
+				if(db.checkFood(email,food[3])){ //if food is aleady added, display snackbar message
 					Snackbar.make(v,food[3] + " already in cart!", Snackbar.LENGTH_SHORT).show();
 				}
-				else{
+				else{//add food to cart database
 					db.addFood(new Food(email, food[3], position));
 					Snackbar.make(v, food[3] + " added to cart!", Snackbar.LENGTH_SHORT).show();
 				}
@@ -248,24 +273,22 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 	public void openFoodProfile(View v, int food_pos){
 		Intent intent = new Intent(getApplicationContext(), FoodProfile.class);
 		switch(v.getId()){
-			case R.id.food1_image:
+			//opens FoodCategory class and display food profile for each food
+			//passes id to be used for image and string values stored in FoodCategory class
+			case R.id.food1_image: //pass food_pas value to FoodCategory class
 				intent.putExtra("id", food_pos);
-				Log.d("Position", String.valueOf(food_pos));
 				startActivity(intent);
 				break;
-			case R.id.food2_image:
+			case R.id.food2_image://pass food_pas+1 value to FoodCategory class
 				intent.putExtra("id", food_pos + 1);
-				Log.d("Position", String.valueOf(food_pos + 1));
 				startActivity(intent);
 				break;
-			case R.id.food3_image:
+			case R.id.food3_image://pass food_pas+2 value to FoodCategory class
 				intent.putExtra("id", food_pos + 2);
-				Log.d("Position", String.valueOf(food_pos + 2));
 				startActivity(intent);
 				break;
-			case R.id.food4_image:
+			case R.id.food4_image://pass food_pas+3 value to FoodCategory class
 				intent.putExtra("id", food_pos + 3);
-				Log.d("Position", String.valueOf(food_pos + 3));
 				startActivity(intent);
 				break;
 		}
