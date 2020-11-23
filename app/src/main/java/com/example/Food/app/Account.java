@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,9 +28,11 @@ import java.util.List;
 public class Account extends AppCompatActivity{
 	RecyclerView recyclerView;
 	ImageView imageView;
+	ImageView home, cook, dish;
 	TextView textView;
-	private Button edit,save,cancel;
-	private EditText firstName, lastName, email;
+	private Button edit,save,cancel,logout;
+	private EditText firstName, lastName;
+	TextView email;
 	String userEmail;
 	Login log = new Login();
 	Signup signup = new Signup();
@@ -48,6 +51,7 @@ public class Account extends AppCompatActivity{
 	};
 	ArrayList<Food> foodArrayList =  new ArrayList<>();
 	@Override
+
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_account);
@@ -64,6 +68,7 @@ public class Account extends AppCompatActivity{
 		cancel = findViewById(R.id.cancel_button);
 		save = findViewById(R.id.save_button);
 		edit = findViewById(R.id.edit_image);
+		logout = findViewById(R.id.logout);
 		firstName = findViewById(R.id.firstName_text);
 		lastName = findViewById(R.id.lastName_text);
 		email = findViewById(R.id.email_text);
@@ -76,18 +81,44 @@ public class Account extends AppCompatActivity{
 		lastName.setText(user.getLastName());
 		email.setText(user.getEmail());
 
+		home = findViewById(R.id.category_image);
+		cook = findViewById(R.id.cook_image);
+		dish = findViewById(R.id.dish_image);
+
+		home.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				startActivity(new Intent(getApplicationContext(),MainActivity.class));
+			}
+		});
+		dish.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				Snackbar.make(v, "Wala pang feature!!!!", Snackbar.LENGTH_SHORT).show();
+			}
+		});
+		cook.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				Snackbar.make(v, "Wala pang feature!!!!", Snackbar.LENGTH_SHORT).show();
+			}
+		});
 		edit.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v){
 				firstName.setFocusableInTouchMode(true);
-				lastName.setFocusableInTouchMode(true);
-				email.setFocusableInTouchMode(true);
+				lastName.setFocusableInTouchMode(true);;
 				save.setVisibility(View.VISIBLE);
 				cancel.setVisibility(View.VISIBLE);
 				Log.d("Edit", "working");
 			}
 		});
-
+		logout.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				startActivity(new Intent(getApplicationContext(), Login.class));
+			}
+		});
 		save.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v){
@@ -98,30 +129,22 @@ public class Account extends AppCompatActivity{
 				newUser.setLastName(lastName.getText().toString());
 				newUser.setPassword(user.getPassword());
 
-
-				int isVerified =  verifyAccount(v, newUser.getEmail(),newUser.getFirstName(), newUser.getLastName());
+				int isVerified =  verifyAccount(newUser.getFirstName(), newUser.getLastName());
 				switch(isVerified){
 					case 0:
 						Snackbar.make(v,"Fields are empty!", Snackbar.LENGTH_SHORT).show();
 						break;
 					case 1:
-						Snackbar.make(v,"Use valid email format!", Snackbar.LENGTH_SHORT).show();
-						break;
-					case 2:
-						Snackbar.make(v,"Email is already used!", Snackbar.LENGTH_SHORT).show();
-						break;
-					case 3:
 						data.updateUser(newUser);
+
 						firstName.setText(newUser.getFirstName());
 						lastName.setText(newUser.getLastName());
-						email.setText(newUser.getEmail());
 
 						Log.d("Account", newUser.getEmail() + "\n" + newUser.getFirstName()
 								+ "\n" + newUser.getLastName());
 
 						firstName.setFocusable(false);
 						lastName.setFocusable(false);
-						email.setFocusable(false);
 						save.setVisibility(View.INVISIBLE);
 						cancel.setVisibility(View.INVISIBLE);
 						break;
@@ -134,11 +157,11 @@ public class Account extends AppCompatActivity{
 			public void onClick(View v){
 				firstName.setFocusable(false);
 				lastName.setFocusable(false);
-				email.setFocusable(false);
 				save.setVisibility(View.INVISIBLE);
 				cancel.setVisibility(View.INVISIBLE);
 			}
 		});
+
 		List<Food> foodList = db.getAllFood(userEmail);
 		for(Food food: foodList){
 			foodArrayList.add(food);
@@ -150,23 +173,12 @@ public class Account extends AppCompatActivity{
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
 	}
 
-	public int verifyAccount(View v,String email, String firstname, String lastname){
-		if(email.equals("")  || firstname.equals("") || lastname.equals("")){
+	public int verifyAccount(String firstname, String lastname){
+		if(firstname.equals("") || lastname.equals("")){
 			return 0;
 		}
 		else{
-			if(!signup.isEmailValid(email)){
-					return 1;
-			}
-			else{
-					Boolean checkEmail = data.checkEmail(email);
-					if(checkEmail==true){
-						return 3;
-					}
-					else{
-						return 2;
-					}
-				}
-			}
+			return 1;
 		}
+	}
 }

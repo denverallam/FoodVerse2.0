@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.Food.R;
 import com.example.Food.data.DatabaseHandler;
 import com.example.Food.model.User;
+import com.google.android.material.snackbar.Snackbar;
 
 public class Login extends AppCompatActivity{
 	public static String userEmail;
@@ -59,7 +60,7 @@ public class Login extends AppCompatActivity{
 				}
 				else{
 					//If email or password is incorrect, show toast message
-					Toast.makeText(getApplicationContext(), "Email/Password incorrect!!", Toast.LENGTH_SHORT).show();
+					Snackbar.make(v, "Email/Password incorrect!!", Snackbar.LENGTH_SHORT).show();
 					emailText.setText("");
 					passwordText.setText("");
 				}

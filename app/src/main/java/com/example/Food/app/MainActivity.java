@@ -11,11 +11,12 @@ import android.widget.ImageView;
 
 import com.example.Food.adapter.MyAdapter;
 import com.example.Food.R;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity{
 
 	RecyclerView recyclerView;
-	ImageView account;
+	ImageView account, cook, dish;
 	int images[] = {
 			R.drawable.breakfast,R.drawable.lunch,
 			R.drawable.dinner,R.drawable.beverage,
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		account = findViewById(R.id.account_image);
+		cook = findViewById(R.id.cook_image);
+		dish = findViewById(R.id.dish_image);
 		recyclerView = findViewById(R.id.recyclerView);
 
 		MyAdapter myAdapter = new MyAdapter(this,images);
@@ -35,7 +38,18 @@ public class MainActivity extends AppCompatActivity{
 			@Override
 			public void onClick(View v){
 				startActivity(new Intent(getApplicationContext(),Account.class));
-				finish();
+			}
+		});
+		dish.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				Snackbar.make(v, "Wala pang feature!!!!", Snackbar.LENGTH_SHORT).show();
+			}
+		});
+		cook.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				Snackbar.make(v, "Wala pang feature!!!!", Snackbar.LENGTH_SHORT).show();
 			}
 		});
 	}

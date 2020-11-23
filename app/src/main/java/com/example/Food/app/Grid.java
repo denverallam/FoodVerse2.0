@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.VideoView;
 
 import com.example.Food.R;
 import com.example.Food.data.FoodDatabaseHandler;
@@ -22,8 +20,8 @@ import java.util.List;
 
 public class Grid extends AppCompatActivity implements View.OnClickListener{
 
-	ImageView header, food1_image, food2_image, food3_image, food4_image, cart;
-	ImageView account, home;
+	ImageView header, food1_image, food2_image, food3_image, food4_image, cook;
+	ImageView account, home,dish;
 	Button food_cart1, food_cart2, food_cart3, food_cart4;
 	TextView food1_text, food2_text, food3_text, food4_text;
 	FoodDatabaseHandler db = new FoodDatabaseHandler(this);
@@ -53,7 +51,8 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 
 		account = findViewById(R.id.account_image);
 		home = findViewById(R.id.category_image);
-		cart = findViewById(R.id.cart);
+		cook = findViewById(R.id.cook_image);
+		dish = findViewById(R.id.dish_image);
 
 		food1_text = findViewById(R.id.food1_text);
 		food2_text = findViewById(R.id.food2_text);
@@ -70,11 +69,15 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		food3_image.setOnClickListener(this);
 		food4_image.setOnClickListener(this);
 
+		account.setOnClickListener(this);
+		home.setOnClickListener(this);
+		dish.setOnClickListener(this);
+		cook.setOnClickListener(this);
+
 		List<Food> foodList = db.getAllFood(email);
 		for(Food food: foodList){
 			foodArrayList.add(food);
 		}
-		cart.setOnClickListener(this);
 
 		switch(position){
 			case 0:
@@ -225,9 +228,18 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 					Snackbar.make(v, food[3] + " added to cart!", Snackbar.LENGTH_SHORT).show();
 				}
 				break;
-			case R.id.cart:
-				Log.d("Size", String.valueOf(foodArrayList.size()));
+			case R.id.cook_image:
 				startActivity(intent);
+				break;
+			case R.id.category_image:
+				startActivity(new Intent(getApplicationContext(), MainActivity.class));
+				finish();
+				break;
+			case R.id.dish_image:
+				Snackbar.make(v, "Wala pang feature!!!!", Snackbar.LENGTH_SHORT).show();
+				break;
+			case R.id.account_image:
+				startActivity(new Intent(getApplicationContext(), Account.class));
 				break;
 		}
 

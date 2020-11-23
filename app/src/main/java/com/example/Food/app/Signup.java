@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.Food.R;
 import com.example.Food.data.DatabaseHandler;
 import com.example.Food.model.User;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -53,11 +54,11 @@ public class Signup extends AppCompatActivity{
 				else{
 					if(!isEmailValid(email) || !isPasswordValid(password)){
 						if(!isEmailValid(email)){
-							Toast.makeText(Signup.this, "Use valid email format", Toast.LENGTH_LONG).show();
+							Snackbar.make(v, "Use valid email format", Snackbar.LENGTH_LONG).show();
 						}
 						else{
-							Toast.makeText(Signup.this, "Password must have:\n" + "At least 8 characters\n" + "At least one numeric value\n" +
-									"At least one lower case alphabet\n" + "At least one upper case alphabet", Toast.LENGTH_LONG).show();
+							Snackbar.make(v, "Password must have:\n" + "At least 8 characters\n" + "At least one numeric value\n" +
+									"At least one lower case alphabet\n" + "At least one upper case alphabet", Snackbar.LENGTH_LONG).show();
 						}
 					}
 					else{
@@ -70,15 +71,15 @@ public class Signup extends AppCompatActivity{
 								user.setLastName(lastName);
 								user.setPassword(password);
 								db.addUser(user);
-								Toast.makeText(getApplicationContext(), "Account Registered!", Toast.LENGTH_SHORT).show();
+								Snackbar.make(v, "Account Registered!", Snackbar.LENGTH_SHORT).show();
 								finish();
 							}
 							else{
-								Toast.makeText(getApplicationContext(), "Email is already used!", Toast.LENGTH_SHORT).show();
+								Snackbar.make(v, "Email is already used!", Snackbar.LENGTH_SHORT).show();
 							}
 						}
 						else {
-							Toast.makeText(getApplicationContext(), "Password do not match!", Toast.LENGTH_SHORT).show();
+							Snackbar.make(v, "Password do not match!", Snackbar.LENGTH_SHORT).show();
 						}
 					}
 				}

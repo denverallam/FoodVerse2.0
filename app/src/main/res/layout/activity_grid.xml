@@ -252,7 +252,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
             <ImageView
-                android:id="@+id/cart"
+                android:id="@+id/cook_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@mipmap/chef" />
