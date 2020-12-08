@@ -25,7 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.Cart"
+        <activity android:name=".app.Cook"
             android:label="Details"
             android:parentActivityName=".app.Grid" />
         <activity

@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +20,7 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 
 	ImageView header, food1_image, food2_image, food3_image, food4_image, cook;
 	ImageView account, home,dish;
-	Button food_cart1, food_cart2, food_cart3, food_cart4;
+//	Button food_cart1, food_cart2, food_cart3, food_cart4;
 	TextView food1_text, food2_text, food3_text, food4_text;
 	FoodDatabaseHandler db = new FoodDatabaseHandler(this);
 	ArrayList<Food> foodArrayList = new ArrayList<>();
@@ -43,11 +41,11 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		food2_image = findViewById(R.id.food2_image);
 		food3_image = findViewById(R.id.food3_image);
 		food4_image = findViewById(R.id.food4_image);
-
-		food_cart1 = findViewById(R.id.food_cart1);
-		food_cart2 = findViewById(R.id.food_cart2);
-		food_cart3 = findViewById(R.id.food_cart3);
-		food_cart4 = findViewById(R.id.food_cart4);
+//
+//		food_cart1 = findViewById(R.id.food_cart1);
+//		food_cart2 = findViewById(R.id.food_cart2);
+//		food_cart3 = findViewById(R.id.food_cart3);
+//		food_cart4 = findViewById(R.id.food_cart4);
 
 		account = findViewById(R.id.account_image);
 		home = findViewById(R.id.category_image);
@@ -59,10 +57,10 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		food3_text = findViewById(R.id.food3_text);
 		food4_text = findViewById(R.id.food4_text);
 
-		food_cart1.setOnClickListener(this);
-		food_cart2.setOnClickListener(this);
-		food_cart3.setOnClickListener(this);
-		food_cart4.setOnClickListener(this);
+//		food_cart1.setOnClickListener(this);
+//		food_cart2.setOnClickListener(this);
+//		food_cart3.setOnClickListener(this);
+//		food_cart4.setOnClickListener(this);
 
 		food1_image.setOnClickListener(this);
 		food2_image.setOnClickListener(this);
@@ -175,7 +173,7 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 	}
 	@Override
 	public void onClick(View v){
-		Intent intent = new Intent(Grid.this, Cart.class);
+		Intent intent = new Intent(Grid.this, Cook.class);
 		//get value passed from MainActivity
 		int category = getIntent().getIntExtra("CATEGORY",0);
 		int position;
@@ -209,50 +207,50 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 		}
 		openFoodProfile(v,food_pos);
 		switch(v.getId()){
-			case R.id.food_cart1:
-				//if first food image is clicked, id == food_pos
-				position = food_pos;
-				if(db.checkFood(email,food[0])){//if food is aleady added, display snackbar message
-					Snackbar.make(v,food[0] + " already in cart!", Snackbar.LENGTH_SHORT).show();
-				}
-				else{//add food to cart database
-					db.addFood(new Food(email, food[0],position));
-					Snackbar.make(v, food[0] + " added to cart!", Snackbar.LENGTH_SHORT).show();
-				}
-				break;
-			case R.id.food_cart2:
-				//if second food image is clicked, id == food_pos+1
-				position = food_pos + 1;
-				if(db.checkFood(email,food[1])){//if food is aleady added, display snackbar message
-					Snackbar.make(v,food[1] + " already in cart!", Snackbar.LENGTH_SHORT).show();
-				}
-				else{//add food to cart database
-					db.addFood(new Food(email, food[1], position));
-					Snackbar.make(v, food[1] + " added to cart!", Snackbar.LENGTH_SHORT).show();
-				}
-				break;
-			case R.id.food_cart3:
-				//if third food image is clicked, id == food_pos + 2
-				position = food_pos + 2;
-				if(db.checkFood(email,food[2])){//if food is aleady added, display snackbar message
-					Snackbar.make(v,food[2] + " already in cart!", Snackbar.LENGTH_SHORT).show();
-				}
-				else{//add food to cart database
-					db.addFood(new Food(email, food[2], position));
-					Snackbar.make(v, food[2] + " added to cart!", Snackbar.LENGTH_SHORT).show();
-				}
-				break;
-			case R.id.food_cart4:
-				//if fourth food image is clicked, id == food_pos + 3
-				position = food_pos + 3;
-				if(db.checkFood(email,food[3])){ //if food is aleady added, display snackbar message
-					Snackbar.make(v,food[3] + " already in cart!", Snackbar.LENGTH_SHORT).show();
-				}
-				else{//add food to cart database
-					db.addFood(new Food(email, food[3], position));
-					Snackbar.make(v, food[3] + " added to cart!", Snackbar.LENGTH_SHORT).show();
-				}
-				break;
+//			case R.id.food_cart1:
+//				//if first food image is clicked, id == food_pos
+//				position = food_pos;
+//				if(db.checkFood(email,food[0])){//if food is aleady added, display snackbar message
+//					Snackbar.make(v,food[0] + " already in cart!", Snackbar.LENGTH_SHORT).show();
+//				}
+//				else{//add food to cart database
+//					db.addFood(new Food(email, food[0],position));
+//					Snackbar.make(v, food[0] + " added to cart!", Snackbar.LENGTH_SHORT).show();
+//				}
+//				break;
+//			case R.id.food_cart2:
+//				//if second food image is clicked, id == food_pos+1
+//				position = food_pos + 1;
+//				if(db.checkFood(email,food[1])){//if food is aleady added, display snackbar message
+//					Snackbar.make(v,food[1] + " already in cart!", Snackbar.LENGTH_SHORT).show();
+//				}
+//				else{//add food to cart database
+//					db.addFood(new Food(email, food[1], position));
+//					Snackbar.make(v, food[1] + " added to cart!", Snackbar.LENGTH_SHORT).show();
+//				}
+//				break;
+//			case R.id.food_cart3:
+//				//if third food image is clicked, id == food_pos + 2
+//				position = food_pos + 2;
+//				if(db.checkFood(email,food[2])){//if food is aleady added, display snackbar message
+//					Snackbar.make(v,food[2] + " already in cart!", Snackbar.LENGTH_SHORT).show();
+//				}
+//				else{//add food to cart database
+//					db.addFood(new Food(email, food[2], position));
+//					Snackbar.make(v, food[2] + " added to cart!", Snackbar.LENGTH_SHORT).show();
+//				}
+//				break;
+//			case R.id.food_cart4:
+//				//if fourth food image is clicked, id == food_pos + 3
+//				position = food_pos + 3;
+//				if(db.checkFood(email,food[3])){ //if food is aleady added, display snackbar message
+//					Snackbar.make(v,food[3] + " already in cart!", Snackbar.LENGTH_SHORT).show();
+//				}
+//				else{//add food to cart database
+//					db.addFood(new Food(email, food[3], position));
+//					Snackbar.make(v, food[3] + " added to cart!", Snackbar.LENGTH_SHORT).show();
+//				}
+//				break;
 			case R.id.cook_image:
 				startActivity(intent);
 				break;

@@ -5,22 +5,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.Food.adapter.CartAdapter;
+import com.example.Food.adapter.CookAdapter;
 import com.example.Food.R;
 import com.example.Food.data.FoodDatabaseHandler;
 import com.example.Food.model.Food;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart extends AppCompatActivity{
+public class Cook extends AppCompatActivity{
 	RecyclerView recyclerView;
 	ImageView imageView;
 	TextView textView;
@@ -46,7 +42,7 @@ public class Cart extends AppCompatActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_cart);
+		setContentView(R.layout.activity_cook);
 
 		Login login = new Login();
 		email = login.userEmail;
@@ -60,7 +56,7 @@ public class Cart extends AppCompatActivity{
 		List<Food> foodList = db.getAllFood(email);
 		foodArrayList.addAll(foodList);
 
-		CartAdapter myAdapter = new CartAdapter(this,foodArrayList,images);
+		CookAdapter myAdapter = new CookAdapter(this,foodArrayList,images);
 		recyclerView.setAdapter(myAdapter);
 		recyclerView.setHasFixedSize(true);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));

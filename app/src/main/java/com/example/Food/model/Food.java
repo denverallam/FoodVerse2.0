@@ -5,12 +5,21 @@ public class Food{
 	private String foodName;
 	private String foodEmail;
 	private int foodNumber;
+	private String foodSteps;
+	private String foodIngredients;
 
 	public Food(){
 	}
 
 	public Food(String foodName, int foodNumber){
 		this.foodName = foodName;
+		this.foodNumber = foodNumber;
+	}
+	public Food(String foodEmail,String foodName, String foodSteps, String foodIngredients, int foodNumber){
+		this.foodEmail = foodEmail;
+		this.foodName = foodName;
+		this.foodSteps = foodSteps;
+		this.foodIngredients = foodIngredients;
 		this.foodNumber = foodNumber;
 	}
 	public Food(String email, String foodName, int foodNumber){
@@ -60,5 +69,21 @@ public class Food{
 
 	public void setFoodNumber(int foodNumber){
 		this.foodNumber = foodNumber;
+	}
+
+	public String getFoodSteps(){
+		return foodSteps;
+	}
+
+	public void setFoodSteps(String foodSteps){
+		this.foodSteps = foodSteps;
+	}
+
+	public String getFoodIngredients(){
+		return foodIngredients;
+	}
+
+	public void setFoodIngredients(String foodIngredients){
+		this.foodIngredients = foodIngredients;
 	}
 }

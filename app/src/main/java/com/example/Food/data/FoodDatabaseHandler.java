@@ -24,8 +24,10 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 
 	@Override
 	public void onCreate(SQLiteDatabase db){
-		String CREATE_FOOD_TABLE = "CREATE TABLE " + FoodUtil.TABLE_NAME + "(" + FoodUtil.KEY_ID + " INTEGER PRIMARY KEY, "
-				+ FoodUtil.FOOD_EMAIL + " TEXT, " + FoodUtil.FOOD_NAME + " TEXT, " + FoodUtil.FOOD_NUMBER + " INTEGER" + ")";
+		String CREATE_FOOD_TABLE = "CREATE TABLE " + FoodUtil.TABLE_NAME + "(" + FoodUtil.KEY_ID + " INTEGER PRIMARY KEY, " +
+				FoodUtil.FOOD_EMAIL + " TEXT, " + FoodUtil.FOOD_NAME +  " TEXT, " +
+				FoodUtil.FOOD_STEPS + " TEXT, " + FoodUtil.FOOD_INGREDIENTS + " TEXT, " +
+				FoodUtil.FOOD_NUMBER + " INTEGER" + ")";
 
 		db.execSQL(CREATE_FOOD_TABLE);
 	}
@@ -40,10 +42,11 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 	//Add food to cart
 	public void addFood(Food food){
 		SQLiteDatabase db = this.getWritableDatabase();
-		Log.d("Database", "onCreate: Added");
 		ContentValues values = new ContentValues();
 		values.put(FoodUtil.FOOD_EMAIL, food.getFoodEmail());
 		values.put(FoodUtil.FOOD_NAME, food.getFoodName());
+		values.put(FoodUtil.FOOD_STEPS, food.getFoodSteps());
+		values.put(FoodUtil.FOOD_INGREDIENTS, food.getFoodIngredients());
 		values.put(FoodUtil.FOOD_NUMBER, food.getFoodNumber());
 
 		//Insert to row
@@ -77,7 +80,9 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 				food.setId(Integer.parseInt(cursor.getString(0)));
 				food.setFoodEmail(cursor.getString(1));
 				food.setFoodName(cursor.getString(2));
-				food.setFoodNumber(cursor.getInt(3));
+				food.setFoodSteps(cursor.getString(3));
+				food.setFoodIngredients(cursor.getString(4));
+				food.setFoodNumber(cursor.getInt(5));
 
 				//add contact objects to the list
 				foodList.add(food);

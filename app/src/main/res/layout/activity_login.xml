@@ -19,7 +19,7 @@
         android:id="@+id/login_email"
         android:layout_width="300dp"
         android:layout_height="44dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="250dp"
         android:hint="Email"
         android:inputType="text"
         android:textColor="#000"

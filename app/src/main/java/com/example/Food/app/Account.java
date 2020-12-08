@@ -12,10 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.Food.R;
-import com.example.Food.adapter.CartAdapter;
+import com.example.Food.adapter.CookAdapter;
 import com.example.Food.data.DatabaseHandler;
 import com.example.Food.data.FoodDatabaseHandler;
 import com.example.Food.model.Food;
@@ -190,7 +189,7 @@ public class Account extends AppCompatActivity{
 		}
 
 		//Inflate the data of foodArrayList to Recyclervieww Adapter
-		CartAdapter myAdapter = new CartAdapter(this, foodArrayList,images);
+		CookAdapter myAdapter = new CookAdapter(this, foodArrayList,images);
 		recyclerView.setAdapter(myAdapter);
 		recyclerView.setHasFixedSize(true);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
