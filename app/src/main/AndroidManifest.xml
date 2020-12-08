@@ -13,21 +13,29 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.FoodProfile"
+        <activity
+            android:name=".app.Likes"
             android:label="Details"
-            android:parentActivityName=".app.Grid"/>
+            android:parentActivityName=".app.Account" />
+        <activity
+            android:name=".app.FoodProfile"
+            android:label="Details"
+            android:parentActivityName=".app.Grid" />
         <activity android:name=".app.Signup" />
         <activity android:name=".app.Account"/>
         <activity android:name=".app.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.package.name.MyActivity" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.Cook"
+        <activity
+            android:name=".app.Cook"
             android:label="Details"
             android:parentActivityName=".app.Grid" />
+
         <activity
             android:name=".app.MainActivity"
             android:parentActivityName=".app.Login" />

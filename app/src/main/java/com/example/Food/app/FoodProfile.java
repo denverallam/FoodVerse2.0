@@ -99,7 +99,18 @@ public class FoodProfile extends AppCompatActivity{
 					db.addFood(new Food(email,food[food_id],steps[food_id],ingredients[food_id],food_id));
 					Snackbar.make(v, food[food_id] + " added!", Snackbar.LENGTH_SHORT).show();
 				}
-
+			}
+		});
+		like.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				if(db.checkLikes(email,food[food_id])){//if food is aleady added, display snackbar message
+					Snackbar.make(v,food[food_id] + " already added", Snackbar.LENGTH_SHORT).show();
+				}
+				else{//add food to cart database
+					db.addFoodToLikes(new Food(email,food[food_id],food_id));
+					Snackbar.make(v, food[food_id] + " added!", Snackbar.LENGTH_SHORT).show();
+				}
 			}
 		});
 	}

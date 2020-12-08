@@ -1,7 +1,6 @@
 package com.example.Food.app;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.Food.R;
-import com.example.Food.adapter.CookAdapter;
 import com.example.Food.data.DatabaseHandler;
 import com.example.Food.data.FoodDatabaseHandler;
 import com.example.Food.model.Food;
@@ -27,8 +25,9 @@ import java.util.List;
 public class Account extends AppCompatActivity{
 	RecyclerView recyclerView;
 	ImageView imageView;
+	ImageView likeImage;
 	ImageView home, cook, dish;
-	TextView textView;
+	TextView textView, seeAll, likeText;
 	private Button edit,save,cancel,logout;
 	private EditText firstName, lastName;
 	TextView email;
@@ -62,10 +61,9 @@ public class Account extends AppCompatActivity{
 
 		//Get user email from Login Activity
 		userEmail = login.userEmail;
-
-		recyclerView = findViewById(R.id.like_recycler);
-		imageView = findViewById(R.id.like_image);
-		textView = findViewById(R.id.like_text);
+		imageView = findViewById(R.id.acc_image);
+		textView = findViewById(R.id.acc_text);
+		seeAll = findViewById(R.id.seeMore);
 
 		//Instantiate an object of database
 		FoodDatabaseHandler db = new FoodDatabaseHandler(this);
@@ -90,6 +88,9 @@ public class Account extends AppCompatActivity{
 		lastName.setText(user.getLastName());
 		email.setText(user.getEmail());
 
+		likeImage = findViewById(R.id.acc_image);
+		likeText = findViewById(R.id.acc_text);
+
 		home = findViewById(R.id.category_image);
 		cook = findViewById(R.id.cook_image);
 		dish = findViewById(R.id.dish_image);
@@ -109,7 +110,7 @@ public class Account extends AppCompatActivity{
 		cook.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v){
-				Snackbar.make(v, "Wala pang feature!!!!", Snackbar.LENGTH_SHORT).show();
+				startActivity(new Intent(getApplicationContext(), Cook.class));
 			}
 		});
 		edit.setOnClickListener(new View.OnClickListener(){
@@ -129,6 +130,13 @@ public class Account extends AppCompatActivity{
 			@Override
 			public void onClick(View v){
 				startActivity(new Intent(getApplicationContext(), Login.class));
+				finish();
+			}
+		});
+		seeAll.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				startActivity(new Intent(getApplicationContext(), Likes.class));
 				finish();
 			}
 		});
@@ -183,16 +191,25 @@ public class Account extends AppCompatActivity{
 		});
 
 		//Store all food from cart and pass it to foodArrayList
-		List<Food> foodList = db.getAllFood(userEmail);
+
+		List<Food> foodList = db.getAllLikes(userEmail);
 		for(Food food: foodList){
 			foodArrayList.add(food);
 		}
 
+		int count = db.getLikesCount();
+		if(count>0){
+			likeImage.setImageResource(images[foodArrayList.get(0).getFoodNumber()]);
+			likeText.setText(foodArrayList.get(0).getFoodName());
+		}
+		else{
+			likeImage.setVisibility(View.INVISIBLE);
+			likeText.setVisibility(View.INVISIBLE);
+			seeAll.setVisibility(View.INVISIBLE);
+		}
+
+
 		//Inflate the data of foodArrayList to Recyclervieww Adapter
-		CookAdapter myAdapter = new CookAdapter(this, foodArrayList,images);
-		recyclerView.setAdapter(myAdapter);
-		recyclerView.setHasFixedSize(true);
-		recyclerView.setLayoutManager(new LinearLayoutManager(this));
 	}
 
 	//Check if user input has string

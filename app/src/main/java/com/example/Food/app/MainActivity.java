@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.example.Food.adapter.MyAdapter;
 import com.example.Food.R;
+import com.example.Food.model.Food;
 import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity{
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity{
 		cook.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v){
-				Snackbar.make(v, "Wala pang feature!!!!", Snackbar.LENGTH_SHORT).show();
+				startActivity(new Intent(getApplicationContext(), Cook.class));
 			}
 		});
 	}

@@ -24,19 +24,22 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 
 	@Override
 	public void onCreate(SQLiteDatabase db){
-		String CREATE_FOOD_TABLE = "CREATE TABLE " + FoodUtil.TABLE_NAME + "(" + FoodUtil.KEY_ID + " INTEGER PRIMARY KEY, " +
+
+		db.execSQL("CREATE TABLE " + FoodUtil.TABLE_NAME + "(" + FoodUtil.KEY_ID + " INTEGER PRIMARY KEY, " +
 				FoodUtil.FOOD_EMAIL + " TEXT, " + FoodUtil.FOOD_NAME +  " TEXT, " +
 				FoodUtil.FOOD_STEPS + " TEXT, " + FoodUtil.FOOD_INGREDIENTS + " TEXT, " +
-				FoodUtil.FOOD_NUMBER + " INTEGER" + ")";
-
-		db.execSQL(CREATE_FOOD_TABLE);
+				FoodUtil.FOOD_NUMBER + " INTEGER" + ")");
+		db.execSQL("CREATE TABLE " + FoodUtil.TABLE_NAME_2 + "(" + FoodUtil.KEY_ID + " INTEGER PRIMARY KEY, " +
+				FoodUtil.FOOD_EMAIL + " TEXT, " + FoodUtil.FOOD_NAME +  " TEXT, " +
+				FoodUtil.FOOD_NUMBER + " INTEGER" + ")");
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
 		db.execSQL("DROP TABLE IF EXISTS " +  FoodUtil.TABLE_NAME);
-
+		db.execSQL("DROP TABLE IF EXISTS " +  FoodUtil.TABLE_NAME_2);
 		onCreate(db);
+
 	}
 
 	//Add food to cart
@@ -48,9 +51,18 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 		values.put(FoodUtil.FOOD_STEPS, food.getFoodSteps());
 		values.put(FoodUtil.FOOD_INGREDIENTS, food.getFoodIngredients());
 		values.put(FoodUtil.FOOD_NUMBER, food.getFoodNumber());
-
 		//Insert to row
 		db.insert(FoodUtil.TABLE_NAME, null, values);
+		db.close(); //close db connection
+	}
+	public void addFoodToLikes(Food food){
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(FoodUtil.FOOD_EMAIL, food.getFoodEmail());
+		values.put(FoodUtil.FOOD_NAME, food.getFoodName());
+		values.put(FoodUtil.FOOD_NUMBER, food.getFoodNumber());
+		//Insert to row
+		db.insert(FoodUtil.TABLE_NAME_2, null, values);
 		db.close(); //close db connection
 	}
 
@@ -58,6 +70,15 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 	public Boolean checkFood(String email, String name){
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM " + FoodUtil.TABLE_NAME + " WHERE " + FoodUtil.FOOD_EMAIL + "=?" + " AND " + FoodUtil.FOOD_NAME + "=?",
+				new String[]{email,name});
+		if(cursor.getCount()>0)
+			return true;
+		else
+			return false;
+	}
+	public Boolean checkLikes(String email, String name){
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery("SELECT * FROM " + FoodUtil.TABLE_NAME_2 + " WHERE " + FoodUtil.FOOD_EMAIL + "=?" + " AND " + FoodUtil.FOOD_NAME + "=?",
 				new String[]{email,name});
 		if(cursor.getCount()>0)
 			return true;
@@ -91,11 +112,46 @@ public class FoodDatabaseHandler extends SQLiteOpenHelper{
 		}
 		return foodList;
 	}
+	public List<Food> getAllLikes(String email){
+		List<Food> foodList = new ArrayList<>();
+		SQLiteDatabase db = this.getReadableDatabase();
+		//Select all contacts
+		String selectAll = "SELECT * FROM " + FoodUtil.TABLE_NAME_2 + " WHERE " + FoodUtil.FOOD_EMAIL + "=?" + " ORDER BY " + FoodUtil.KEY_ID + " DESC";
+		Cursor cursor = db.rawQuery(selectAll, new String[]{email} );
+
+		//Loop through the data
+		if(cursor.moveToFirst()){
+			do{
+				Food food = new Food();
+				food.setId(Integer.parseInt(cursor.getString(0)));
+				food.setFoodEmail(cursor.getString(1));
+				food.setFoodName(cursor.getString(2));
+				food.setFoodNumber(cursor.getInt(3));
+
+				//add contact objects to the list
+				foodList.add(food);
+			}
+			while(cursor.moveToNext());
+		}
+		return foodList;
+	}
 	//delete food
 	public void deleteFood(int id){
 		SQLiteDatabase db = this.getReadableDatabase();
 		db.delete(FoodUtil.TABLE_NAME, FoodUtil.KEY_ID + "=?",
 				new String[]{String.valueOf(id)});
 		db.close();
+	}
+	public void deleteLike(int id){
+		SQLiteDatabase db = this.getReadableDatabase();
+		db.delete(FoodUtil.TABLE_NAME_2, FoodUtil.KEY_ID + "=?",
+				new String[]{String.valueOf(id)});
+		db.close();
+	}
+	public int getLikesCount(){
+		String countQuery = "SELECT * FROM " + FoodUtil.TABLE_NAME_2;
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery(countQuery,null);
+		return cursor.getCount();
 	}
 }

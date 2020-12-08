@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -14,19 +14,21 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:id="@+id/likeRec"
             android:layout_margin="10dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/linear">
+
                 <ImageView
                     android:id="@+id/like_image"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
-                    tools:srcCompat="@tools:sample/avatars"
-                    android:layout_marginEnd="10dp"/>
+                    android:layout_marginEnd="10dp"
+                    tools:srcCompat="@tools:sample/avatars" />
+
                 <TextView
                     android:id="@+id/like_text"
                     android:layout_width="wrap_content"
@@ -45,7 +47,7 @@
                     android:id="@+id/unlike"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    app:srcCompat="@android:drawable/btn_star_big_on" />
+                    android:src="@android:drawable/ic_delete"/>
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

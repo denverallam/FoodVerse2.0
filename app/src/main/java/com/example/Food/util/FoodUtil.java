@@ -4,9 +4,10 @@ public class FoodUtil{
 
 	//Used in FoodDatabaseHandler class
 	//Database and Table Name
-	public static final int DATABASE_VERSION = 23;
+	public static final int DATABASE_VERSION = 40;
 	public static final String DATABASE_NAME = "Food_Database";
-	public static final String TABLE_NAME = "Cook";
+	public static final String TABLE_NAME = "ToCook";
+	public static final String TABLE_NAME_2 = "Likes";
 
 	//Cart table column names
 	public static final String KEY_ID = "id";

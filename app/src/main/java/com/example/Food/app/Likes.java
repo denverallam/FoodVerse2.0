@@ -8,23 +8,21 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.Food.adapter.FoodAdapter;
 import com.example.Food.R;
+import com.example.Food.adapter.FoodAdapter;
+import com.example.Food.adapter.LikeAdapter;
 import com.example.Food.data.FoodDatabaseHandler;
 import com.example.Food.model.Food;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cook extends AppCompatActivity{
+public class Likes extends AppCompatActivity{
 	RecyclerView recyclerView;
 	ImageView imageView;
 	TextView textView;
-
 	ArrayList<Food> foodArrayList =  new ArrayList<>();
-
-	//Store images in int array
-	//Alt + Click to view image
+	String email;
 	int images[] =  {
 			R.drawable.breakfast_b1,R.drawable.breakfast_b2,
 			R.drawable.breakfast_b3,R.drawable.breakfast_b4,
@@ -38,25 +36,24 @@ public class Cook extends AppCompatActivity{
 			R.drawable.snack_s3,R.drawable.snack_s4
 	};
 
-	String email;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_cook);
+		setContentView(R.layout.activity_likes);
 
 		Login login = new Login();
 		email = login.userEmail;
 
-		recyclerView = findViewById(R.id.cart_recycler);
+		recyclerView = findViewById(R.id.likes_recycler);
 		imageView = findViewById(R.id.food_image);
 		textView = findViewById(R.id.food_text);
 
 		FoodDatabaseHandler db = new FoodDatabaseHandler(this);
 
-		List<Food> foodList = db.getAllFood(email);
+		List<Food> foodList = db.getAllLikes(email);
 		foodArrayList.addAll(foodList);
 
-		FoodAdapter myAdapter = new FoodAdapter(this,foodArrayList,images);
+		LikeAdapter myAdapter = new LikeAdapter(this,foodArrayList,images);
 		recyclerView.setAdapter(myAdapter);
 		recyclerView.setHasFixedSize(true);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));

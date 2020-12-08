@@ -47,8 +47,7 @@
                     android:id="@+id/delete"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@android:drawable/ic_delete"
-                    app:srcCompat="@android:drawable/ic_menu_delete"/>
+                    android:src="@android:drawable/ic_delete"/>
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
