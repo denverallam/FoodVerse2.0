@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.Food.R;
-import com.example.Food.adapter.FoodAdapter;
 import com.example.Food.adapter.LikeAdapter;
 import com.example.Food.data.FoodDatabaseHandler;
 import com.example.Food.model.Food;

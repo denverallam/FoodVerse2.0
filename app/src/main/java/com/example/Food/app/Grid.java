@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.example.Food.R;
 import com.example.Food.data.FoodDatabaseHandler;
 import com.example.Food.model.Food;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -259,7 +258,7 @@ public class Grid extends AppCompatActivity implements View.OnClickListener{
 				finish();
 				break;
 			case R.id.dish_image:
-				Snackbar.make(v, "Wala pang feature!!!!", Snackbar.LENGTH_SHORT).show();
+				startActivity(new Intent(getApplicationContext(), Dish.class));
 				break;
 			case R.id.account_image:
 				startActivity(new Intent(getApplicationContext(), Account.class));

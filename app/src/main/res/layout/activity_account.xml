@@ -14,18 +14,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:src="@drawable/beverage_header" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linear0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/rectangle_53"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/circle"
+                app:layout_constraintBottom_toBottomOf="@+id/image"
+                app:layout_constraintEnd_toEndOf="@+id/image"
+                app:layout_constraintStart_toStartOf="@+id/image"
+                app:layout_constraintTop_toTopOf="@+id/image" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/pen"
+                app:layout_constraintBottom_toBottomOf="@+id/image"
+                app:layout_constraintEnd_toEndOf="@+id/image"
+                app:layout_constraintStart_toStartOf="@+id/image"
+                app:layout_constraintTop_toTopOf="@+id/image" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/image"
+            android:layout_below="@+id/linear0"
             android:padding="10dp">
 
             <LinearLayout
@@ -47,7 +75,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="10dp"
-                    android:background="@android:drawable/ic_menu_edit" />
+                    android:background="@drawable/edit" />
             </LinearLayout>
 
             <EditText
@@ -84,10 +112,10 @@
                 android:layout_marginVertical="10dp"
                 android:background="@mipmap/name"
                 android:focusable="false"
-                android:text="Email"
-                android:textSize="15sp"
+                android:padding="10dp"
+                android:text="Username"
                 android:textColor="#000000"
-                android:padding="10dp" />
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -117,18 +145,19 @@
         android:layout_margin="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/likeImg">
 
         <LinearLayout
             android:id="@+id/linear"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="20dp"
+            android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/acc_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginEnd="10dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -148,16 +177,15 @@
             android:layout_centerVertical="true">
         </LinearLayout>
     </RelativeLayout>
-    <TextView
-        android:id="@+id/textView2"
+
+    <ImageView
+        android:id="@+id/likeImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="Likes"
-        android:textSize="25sp"
-        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        android:background="@drawable/likes" />
 
     <TextView
         android:id="@+id/seeMore"
@@ -166,7 +194,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:text="See All"
-        android:textColor="#000000"
+        android:textColor="#568A9F"
         android:textAlignment="center"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -188,7 +216,12 @@
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_btn"
+        android:shadowColor="#568a9f"
+        android:text="LOGOUT"
+        android:textAllCaps="false"
+        android:textColor="#fff"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

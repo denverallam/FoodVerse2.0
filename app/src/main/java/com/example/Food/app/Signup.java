@@ -55,11 +55,10 @@ public class Signup extends AppCompatActivity{
 				else{//if not empty
 					if(!isEmailValid(email) || !isPasswordValid(password)){//check if both email and password are valid
 						if(!isEmailValid(email)){//if email is not valid
-							Snackbar.make(v, "Use valid email format", Snackbar.LENGTH_LONG).show();
+							Snackbar.make(v, "\"Username must have at least 6 alphanumeric values!\"", Snackbar.LENGTH_LONG).show();
 						}
 						else{//if password is not valid
-							Snackbar.make(v, "Password must have:\n" + "At least 8 characters\n" + "At least one numeric value\n" +
-									"At least one lower case alphabet\n" + "At least one upper case alphabet", Snackbar.LENGTH_LONG).show();
+							Snackbar.make(v, "Password must have at least 8 alphanumeric values!", Snackbar.LENGTH_LONG).show();
 						}
 					}
 					else{//if user input is valid, and both email and password are valid
@@ -92,7 +91,7 @@ public class Signup extends AppCompatActivity{
 		//		^(?=.*[0-9]) = Password must contain a number
 		//		(?=.*[a-z])(?=.*[A-Z]) = Password must contain a lower case and upper case alphabet
 		//		{8,20} = Password must be at least 8 characters and at most 20
-		String regex = "^(?=.*[0-9])"+"(?=.*[a-z])(?=.*[A-Z])"+".{8,20}$";
+		String regex = "^(?=.*[0-9])"+"(?=.*[a-z])"+".{8,20}$";
 
 		//Compile the REGEX
 		Pattern pattern = Pattern.compile(regex);
@@ -102,7 +101,7 @@ public class Signup extends AppCompatActivity{
 	//		Function to check if Email conforms with REGEX
 	public boolean isEmailValid(String email){
 		//		Regex for valid email
-		String regex = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+		String regex = "^(?=.*[0-9])"+"(?=.*[a-z])"+".{6,20}$";
 
 		//Compile the REGEX
 		Pattern pattern = Pattern.compile(regex);

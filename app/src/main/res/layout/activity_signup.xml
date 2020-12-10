@@ -6,36 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.Food.app.Signup">
-    <LinearLayout
-        android:id="@+id/layout0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="10dp"
-            android:src="@mipmap/left_arrow"></ImageView>
-
-        <TextView
-            android:id="@+id/text_back_to_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back to Login"
-            android:textColor="#000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/text_signup"
@@ -48,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -103,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Email"
+            android:text="Username"
             android:textColor="#000" />
 
         <EditText
@@ -113,7 +84,7 @@
             android:layout_marginBottom="10dp"
             android:autofillHints=""
             android:background="@drawable/custom_fname"
-            android:hint="juan123@gmail_com"
+            android:hint="juancruz123"
             android:inputType="textEmailAddress"
             android:paddingLeft="15dp"
             android:shadowColor="#3E3E3E" />

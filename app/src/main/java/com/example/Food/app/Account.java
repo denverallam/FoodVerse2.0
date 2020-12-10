@@ -99,18 +99,21 @@ public class Account extends AppCompatActivity{
 			@Override
 			public void onClick(View v){
 				startActivity(new Intent(getApplicationContext(),MainActivity.class));
+				finish();
 			}
 		});
 		dish.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v){
-				Snackbar.make(v, "Wala pang feature!!!!", Snackbar.LENGTH_SHORT).show();
+				startActivity(new Intent(getApplicationContext(), Dish.class));
+				finish();
 			}
 		});
 		cook.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v){
 				startActivity(new Intent(getApplicationContext(), Cook.class));
+				finish();
 			}
 		});
 		edit.setOnClickListener(new View.OnClickListener(){
@@ -191,21 +194,18 @@ public class Account extends AppCompatActivity{
 		});
 
 		//Store all food from cart and pass it to foodArrayList
-
 		List<Food> foodList = db.getAllLikes(userEmail);
-		for(Food food: foodList){
-			foodArrayList.add(food);
-		}
+		foodArrayList.addAll(foodList);
 
-		int count = db.getLikesCount();
-		if(count>0){
-			likeImage.setImageResource(images[foodArrayList.get(0).getFoodNumber()]);
-			likeText.setText(foodArrayList.get(0).getFoodName());
-		}
-		else{
+		int count = foodArrayList.size();
+		if(count==0){
 			likeImage.setVisibility(View.INVISIBLE);
 			likeText.setVisibility(View.INVISIBLE);
 			seeAll.setVisibility(View.INVISIBLE);
+		}
+		else{
+			likeImage.setImageResource(images[foodArrayList.get(0).getFoodNumber()]);
+			likeText.setText(foodArrayList.get(0).getFoodName());
 		}
 
 

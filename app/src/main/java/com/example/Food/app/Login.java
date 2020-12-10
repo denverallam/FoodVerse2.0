@@ -57,13 +57,12 @@ public class Login extends AppCompatActivity{
 					User user = db.getUser(email);
 					user.setEmail(email);
 
-					Snackbar.make(v, "WELCOME " + user.getFirstName().toUpperCase(), Snackbar.LENGTH_LONG).show();
 					startActivity(new Intent(Login.this,MainActivity.class));
 					finish();
 				}
 				else{
 					//If email or password is incorrect, show snackbar message
-					Snackbar.make(v, "Email/Password incorrect!!", Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(v, "Username/Password incorrect!!", Snackbar.LENGTH_SHORT).show();
 					emailText.setText("");
 					passwordText.setText("");
 				}
